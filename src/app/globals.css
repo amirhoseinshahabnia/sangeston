@@ -11,23 +11,53 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 39, 79, 91;
+    --background-end-rgb: 28, 57, 65;
   }
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
+  background: #442728;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+.glitch-logo {
+  /* width: 150px;
+  height: 103px; */
+  width: 200px;
+  height: 155px;
+  background-image: url(/logo-with-bg.png);
+  background-size: cover;
+  animation: glitch 1.5s infinite steps(1);
+}
+
+@keyframes glitch {
+  0%,
+  100% {
+    background-image: url(/logo-with-bg.png);
+  }
+  92.5% {
+    background-image: url(/glitch-image-1.png);
+    opacity: 1;
+  }
+  95% {
+    background-image: url(/glitch-image-2.png);
+    opacity: 0;
+  }
+  97.5% {
+    background-image: url(/glitch-image-3.png);
+    opacity: 1;
   }
 }
