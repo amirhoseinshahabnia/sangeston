@@ -65,3 +65,11 @@ body {
     opacity: 1;
   }
 }
+
+.card {
+  width: 700px;
+  height: 400px;
+}
+.color-overlay {
+  z-index: -1;
+}
