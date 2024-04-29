@@ -7,6 +7,7 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --main-color: #b2c3bd;
+  --dark-green: #1c3941;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,6 +34,10 @@ body {
 
 .main-color {
   color: var(--main-color);
+}
+
+.bg-dark-green {
+  background-color: var(--dark-green);
 }
 
 @layer utilities {

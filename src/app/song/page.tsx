@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Image from 'next/image';
 // @ts-ignore
 import * as hexToHsl from 'hex-to-hsl';
@@ -32,7 +32,7 @@ type SongProps = {
     title: string;
     body?: string;
   };
-  listen: {
+  listen?: {
     title: string;
     spotify?: string;
     soundcloud?: string;
@@ -88,13 +88,6 @@ const data: SongProps[] = [
 ];
 
 export default function Song() {
-  const [slide, setSlide] = useState([
-    {
-      activeIndex: 0,
-      zIndex: 10,
-      xSpace: 0,
-    },
-  ]);
   const sampleData = data[0];
 
   const createMonochromPallete = (baseColor: string) => {
@@ -121,12 +114,10 @@ export default function Song() {
 
   const pallete = createMonochromPallete(sampleData.global.globalColor);
 
-  // TODO: Refactor! DRY
   useEffect(() => {
     const allCards = document.querySelectorAll('.card-body');
-    const allTitles = document.querySelectorAll('.card-title p');
     if (allCards.length !== 0) {
-      allCards.forEach((card) => {
+      allCards.forEach((card, i) => {
         card.addEventListener('click', (e: any) => {
           // remove active class from every div
           allCards.forEach((item) => {
@@ -134,20 +125,8 @@ export default function Song() {
             item.parentNode.classList.remove('active');
           });
 
-          e.target.parentNode.classList.add('active');
-        });
-      });
-    }
-    if (allTitles.length !== 0) {
-      allTitles.forEach((title) => {
-        title.addEventListener('click', (e: any) => {
-          // remove active class from every div
-          allTitles.forEach((item) => {
-            // @ts-ignore
-            item.parentNode.parentNode.classList.remove('active');
-          });
-
-          e.target.parentNode.parentNode.classList.add('active');
+          // @ts-ignore
+          allCards[i].parentNode.classList.add('active');
         });
       });
     }
@@ -189,16 +168,27 @@ export default function Song() {
                 background: `hsl(${pallete[index].hue}, ${pallete[index].saturation}%, ${pallete[index].lightness}%)`,
               }}
             />
-            <div className="card-title absolute right-0">
-              <p className="text-lg">{cardData.title}</p>
-            </div>
+
             <div className="card-body rounded-2xl absolute inset-0 py-8 px-16 flex">
+              <div className="card-title absolute right-0">
+                <p className="text-lg">{cardData.title}</p>
+              </div>
               {cardData.title === 'Credit' && (
                 <>
                   <div
                     className="flex items-center gap-x-4 mx-0 my-auto"
                     id="credit-ctn"
                   >
+                    <div className="absolute top-6 right-10">
+                      <p
+                        className="main-color text-sm p-3 rounded-lg"
+                        style={{
+                          backgroundColor: sampleData.global.globalColor,
+                        }}
+                      >
+                        {cardData.tag}
+                      </p>
+                    </div>
                     <div className="img-ctn">
                       <Image
                         src={cardData.artwork}
@@ -223,7 +213,6 @@ export default function Song() {
                           <span key={i}>{artist} </span>
                         ))}
                         <p>Cover Art by: {cardData.coverArtBy}</p>
-                        <span className="tag">{cardData.tag}</span>
                       </div>
                     </div>
                   </div>
