@@ -1,14 +1,19 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 // @ts-ignore
 import * as hexToHsl from 'hex-to-hsl';
 
 type SongProps = {
   global: {
+    title: string;
     backgroundImg: string;
     numberOfCards: number;
     globalColor: string;
   };
   credit: {
+    title: string;
     artwork: string;
     musicName: string;
     artistNames: string[];
@@ -19,13 +24,16 @@ type SongProps = {
     songPath?: string;
   };
   lyrics: {
+    title: string;
     farsi?: string;
     english?: string;
   };
   story: {
+    title: string;
     body?: string;
   };
   listen: {
+    title: string;
     spotify?: string;
     soundcloud?: string;
     youtube?: string;
@@ -42,11 +50,13 @@ type HSLColor = {
 const data: SongProps[] = [
   {
     global: {
+      title: 'global',
       backgroundImg: '/artwork-bg.png',
       numberOfCards: 4,
       globalColor: '#051A27',
     },
     credit: {
+      title: 'Credit',
       artwork: '/artwork.png',
       musicName: 'Song A',
       artistNames: ['Artist A', 'Artist B'],
@@ -57,15 +67,18 @@ const data: SongProps[] = [
       songPath: '',
     },
     lyrics: {
+      title: 'Lyrics',
       farsi:
         'این یک نوشته آزمایشی است که به طراحان و برنامه نویسان کمک میکند تا این عزیزان با بهره گیری از این نوشته تستی و آزمایشی بتوانند نمونه تکمیل شده از پروژه و طرح خودشان را به کارفرما نمایش دهند، استفاده از این متن تستی می تواند سرعت پیشرفت پروژه را افزایش دهد، و طراحان به جای تایپ و نگارش متن می توانند تنها با یک کپی و پست این متن را در کادرهای مختلف جایگزین نمائید. این نوشته توسط سایت لورم ایپسوم فارسی نگاشته شده است.',
       english:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     },
     story: {
+      title: 'Story',
       body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     },
     listen: {
+      title: 'Listen',
       spotify: '#',
       soundcloud: '#',
       youtube: '#',
@@ -75,6 +88,15 @@ const data: SongProps[] = [
 ];
 
 export default function Song() {
+  const [slide, setSlide] = useState([
+    {
+      activeIndex: 0,
+      zIndex: 10,
+      xSpace: 0,
+    },
+  ]);
+  const sampleData = data[0];
+
   const createMonochromPallete = (baseColor: string) => {
     const pallete: HSLColor[] = [];
     const hslColor = hexToHsl(baseColor);
@@ -97,14 +119,62 @@ export default function Song() {
     return pallete;
   };
 
-  const pallete = createMonochromPallete('#051A27');
+  const pallete = createMonochromPallete(sampleData.global.globalColor);
 
-  return (
-    <main className="flex flex-col gap-y-5 min-h-screen items-center justify-center py-8">
-      {Array(data[0].global.numberOfCards)
-        .fill(true)
-        .map((_, index) => (
-          <div className="card rounded-2xl relative" key={index}>
+  // TODO: Refactor! DRY
+  useEffect(() => {
+    const allCards = document.querySelectorAll('.card-body');
+    const allTitles = document.querySelectorAll('.card-title p');
+    if (allCards.length !== 0) {
+      allCards.forEach((card) => {
+        card.addEventListener('click', (e: any) => {
+          // remove active class from every div
+          allCards.forEach((item) => {
+            // @ts-ignore
+            item.parentNode.classList.remove('active');
+          });
+
+          e.target.parentNode.classList.add('active');
+        });
+      });
+    }
+    if (allTitles.length !== 0) {
+      allTitles.forEach((title) => {
+        title.addEventListener('click', (e: any) => {
+          // remove active class from every div
+          allTitles.forEach((item) => {
+            // @ts-ignore
+            item.parentNode.parentNode.classList.remove('active');
+          });
+
+          e.target.parentNode.parentNode.classList.add('active');
+        });
+      });
+    }
+  }, []);
+
+  const renderCards = () => {
+    const components = [];
+    let index = 0;
+    for (let card in sampleData) {
+      if (card !== 'global') {
+        let cardData = sampleData[card as keyof SongProps] as any;
+        let xFactor = index > 2 ? 60 : index > 1 ? 20 : 0;
+        components.push(
+          <div
+            className={`card rounded-2xl absolute ${
+              index === 0 ? 'active' : ''
+            }`}
+            key={index}
+            id={`slide-${index}`}
+            style={{
+              zIndex: 10 - index,
+              // transform: `translateX(${index * 85 + xFactor}px)`,
+              // transform: `translate3d(${index * 85 + xFactor}px, 0px, ${
+              //   index * -100
+              // }px)`,
+            }}
+          >
             <Image
               src="/artwork-bg.png"
               width={700}
@@ -119,11 +189,76 @@ export default function Song() {
                 background: `hsl(${pallete[index].hue}, ${pallete[index].saturation}%, ${pallete[index].lightness}%)`,
               }}
             />
-            <div className="card-body absolute inset-0 z-10 flex justify-center items-center">
-              <h3 className="text-2xl font-semibold">Card {index}</h3>
+            <div className="card-title absolute right-0">
+              <p className="text-lg">{cardData.title}</p>
+            </div>
+            <div className="card-body rounded-2xl absolute inset-0 py-8 px-16 flex">
+              {cardData.title === 'Credit' && (
+                <>
+                  <div
+                    className="flex items-center gap-x-4 mx-0 my-auto"
+                    id="credit-ctn"
+                  >
+                    <div className="img-ctn">
+                      <Image
+                        src={cardData.artwork}
+                        alt={cardData.artwork}
+                        width={256}
+                        height={259}
+                        priority
+                      />
+                    </div>
+                    <div className="credit-body flex flex-col justify-between h-full">
+                      <div className="top">
+                        <h3>{cardData.musicName}</h3>
+                        {cardData.artistNames.map(
+                          (artist: string, i: number) => (
+                            <span key={i}>{artist} </span>
+                          )
+                        )}
+                      </div>
+                      <div className="bottom">
+                        <p>{cardData.composer}</p>
+                        {cardData.lyricsBy.map((artist: string, i: number) => (
+                          <span key={i}>{artist} </span>
+                        ))}
+                        <p>Cover Art by: {cardData.coverArtBy}</p>
+                        <span className="tag">{cardData.tag}</span>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
+              {cardData.title === 'Lyrics' && (
+                <div>
+                  <div id="farsi-lyrics">{cardData.farsi}</div>
+                  <div id="english-lyrics">{cardData.english}</div>
+                </div>
+              )}
+              {cardData.title === 'Story' && (
+                <div id="story">{cardData.body}</div>
+              )}
+              {cardData.title === 'Listen' && (
+                <div>
+                  <h3>Listen</h3>
+                </div>
+              )}
             </div>
           </div>
-        ))}
+        );
+        index++;
+      }
+    }
+
+    return components;
+  };
+
+  return (
+    <main
+      className="min-h-screen items-center justify-center py-16 flex"
+      style={{ transformStyle: 'preserve-3d' }}
+    >
+      {renderCards()}
     </main>
   );
 }

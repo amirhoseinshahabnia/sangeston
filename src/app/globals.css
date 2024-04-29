@@ -17,6 +17,10 @@
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -69,7 +73,68 @@ body {
 .card {
   width: 700px;
   height: 400px;
+  transform-style: preserve-3d;
+  /* position: absolute;
+  left: calc(50% - 350px);
+  top: calc(50% - 200px); */
+  transition: transform 400ms ease;
+  cursor: pointer;
 }
+
+#credit-ctn {
+  height: 259px;
+}
+
 .color-overlay {
   z-index: -1;
+}
+
+.card.active {
+  z-index: 10;
+  scale: 1;
+}
+
+.card-title {
+  opacity: 1;
+  transition: opacity 0.4s ease;
+  bottom: 40px;
+  right: 5px;
+  p {
+    transform: rotate(-90deg);
+  }
+}
+
+#slide-0.active ~ #slide-1 {
+  transform: translate3d(11%, 0px, -100px) scale(0.9);
+}
+
+#slide-0.active ~ #slide-2,
+#slide-1.active ~ #slide-2 {
+  transform: translate3d(21%, 0px, -200px) scale(0.8);
+}
+
+#slide-0.active ~ #slide-3,
+#slide-1.active ~ #slide-3,
+#slide-2.active ~ #slide-3 {
+  transform: translate3d(31%, 0px, -300px) scale(0.7);
+}
+
+#slide-0:has(+ .active),
+#slide-0:has(~ .active) {
+  transform: translate3d(11%, 0px, -100px) scale(0.9);
+  z-index: 9;
+}
+
+#slide-1:has(~ .active) {
+  transform: translate3d(21%, 0px, -200px) scale(0.8);
+  z-index: 8;
+}
+
+#slide-2:has(+ .active) {
+  transform: translate3d(31%, 0px, -300px) scale(0.7);
+  z-index: 7;
+}
+
+.card.active .card-title {
+  opacity: 0;
 }
