@@ -18,6 +18,12 @@
   }
 }
 
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -40,9 +46,112 @@ body {
   background-color: var(--dark-green);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+header {
+  z-index: 10;
+}
+
+header .menu {
+  height: 40px;
+  overflow: hidden;
+
+  &:hover {
+    .line {
+      animation-play-state: running;
+    }
+  }
+}
+
+.line {
+  width: 6px;
+  background-color: var(--main-color);
+}
+
+.left-line {
+  height: 15px;
+  animation: left-line-anim 1.5s infinite;
+  animation-play-state: paused;
+}
+
+.center-line {
+  height: 35px;
+  animation: center-line-anim 1.5s infinite;
+  animation-play-state: paused;
+}
+
+.right-line {
+  height: 25px;
+  animation: right-line-anim 1.5s infinite;
+  animation-play-state: paused;
+}
+
+@keyframes left-line-anim {
+  0%,
+  100% {
+    height: 15px;
+  }
+
+  25% {
+    height: 25px;
+  }
+
+  50% {
+    height: 35px;
+  }
+
+  75% {
+    height: 25px;
+  }
+}
+
+@keyframes center-line-anim {
+  0%,
+  100% {
+    height: 35px;
+  }
+
+  25% {
+    height: 15px;
+  }
+
+  50% {
+    height: 5px;
+  }
+
+  75% {
+    height: 15px;
+  }
+}
+
+@keyframes right-line-anim {
+  0%,
+  100% {
+    height: 25px;
+  }
+
+  25% {
+    height: 35px;
+  }
+
+  50% {
+    height: 15px;
+  }
+
+  75% {
+    height: 35px;
+  }
+}
+
+#side-drawer {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 19;
+  filter: blue(5px);
+  transform: translateX(100%);
+  transition: transform 0.2s ease;
+
+  &.active {
+    transform: translateX(0);
   }
 }
 
