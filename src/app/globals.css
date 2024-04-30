@@ -48,6 +48,7 @@ body {
 
 header {
   z-index: 10;
+  height: 75px;
 }
 
 header .menu {
@@ -59,6 +60,10 @@ header .menu {
       animation-play-state: running;
     }
   }
+}
+
+main {
+  margin-top: -75px;
 }
 
 .line {
