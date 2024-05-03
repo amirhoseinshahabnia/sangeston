@@ -1,3 +1,6 @@
+import FooterListenLinks from './footerListenLinks';
+import FooterSocialLinks from './footerSocialLinks';
+
 const Footer = () => {
   const date = new Date();
   return (
@@ -21,12 +24,20 @@ const Footer = () => {
             </a>
           </p>
         </div>
-        <div className="flex justify-between mb-20">
+        <div className="flex justify-between mb-24 gap-x-16">
           <div className="signup-form">
-            Get early access to fresh beats & upcoming release, Subscribe!
+            <h4 className="mb-4">
+              Get early access to fresh beats & upcoming release, Subscribe!
+            </h4>
           </div>
-          <div className="song-links">Listen to Sang&apos;s songs here</div>
-          <div className="social links">Social</div>
+          <div className="song-links flex flex-col items-center">
+            <h4 className="mb-4">Listen to Sang&apos;s songs here</h4>
+            <FooterListenLinks />
+          </div>
+          <div className="social links flex flex-col items-center">
+            <h4 className="mb-4">Social</h4>
+            <FooterSocialLinks />
+          </div>
         </div>
       </div>
       <div className="credit main-color text-center w-11/12 mx-auto absolute left-0 bottom-6 right-0">

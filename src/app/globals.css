@@ -266,4 +266,14 @@ main {
   background-repeat: no-repeat;
   background-position: 40% -50px;
   background-size: 60%;
+
+  .signup-form,
+  .song-links {
+    flex-grow: 2;
+    flex-shrink: 1;
+    flex-basis: 0;
+  }
+  .social {
+    flex-grow: 1;
+  }
 }
