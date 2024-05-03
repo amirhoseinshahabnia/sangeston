@@ -5,7 +5,7 @@ const Footer = () => {
       <div className="wrapper main-color flex flex-col mx-auto w-11/12 md:max-w-2xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7x">
         <div className="get-in-touch mb-48">
           <h3 className="main-color text-6xl mb-24">
-            Let's create
+            Let&apos;s create
             <br />
             something
             <br />
@@ -25,7 +25,7 @@ const Footer = () => {
           <div className="signup-form">
             Get early access to fresh beats & upcoming release, Subscribe!
           </div>
-          <div className="song-links">Listen to Sang's songs here</div>
+          <div className="song-links">Listen to Sang&apos;s songs here</div>
           <div className="social links">Social</div>
         </div>
       </div>
