@@ -23,7 +23,7 @@ const Header = () => {
   return (
     <>
       <header className="main-header sticky top-0 flex items-center">
-        <nav className="flex items-center justify-between mx-auto w-11/12 md:max-w-2xl lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7x ">
+        <nav className="flex items-center justify-between mx-auto w-11/12 lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7x ">
           <div className="logo-ctn">
             <Link href="/">
               <Image

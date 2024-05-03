@@ -261,12 +261,30 @@ main {
 #footer {
   overflow: hidden;
   background-color: #16282c;
-  min-height: 650px;
-  background-image: url(/logo-opacity-10.svg);
+  /* min-height: 650px; */
+  background-image: url(/footer-bg.svg);
   background-repeat: no-repeat;
-  background-position: 40% -50px;
-  background-size: 60%;
+  background-position: center top;
+  background-size: cover;
+}
 
+.sign-form-placeholder {
+  height: 50px;
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--main-color);
+  border-radius: 15px;
+}
+
+@media screen and (max-width: 1023px) {
+  .signup-form h4 {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media screen and (min-width: 1024px) {
   .signup-form,
   .song-links {
     flex-grow: 2;
@@ -275,5 +293,27 @@ main {
   }
   .social {
     flex-grow: 1;
+    flex-shrink: 1;
+  }
+  .sign-form-placeholder {
+    max-width: 330px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  #footer {
+    background-position: 0 top;
+  }
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1535px) {
+  #footer {
+    background-position: 60px top;
+  }
+}
+
+@media screen and (min-width: 1536px) {
+  #footer {
+    background-position: 150px top;
   }
 }
