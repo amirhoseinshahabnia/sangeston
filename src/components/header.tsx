@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import SideDrawer from './sideDrawer';
@@ -8,6 +9,8 @@ import NavLinks from './navLinks';
 
 const Header = () => {
   const [sideDrawerOpen, setSideDrawerOpen] = useState(false);
+
+  const pathname = usePathname();
 
   const onMenuClick = () => {
     setSideDrawerOpen(true);
@@ -32,6 +35,7 @@ const Header = () => {
               />
             </Link>
           </div>
+          <div></div>
           <div
             className="menu flex items-end gap-x-2 hover:opacity-80 cursor-pointer"
             onClick={onMenuClick}
@@ -43,7 +47,7 @@ const Header = () => {
         </nav>
       </header>
       <SideDrawer show={sideDrawerOpen} onClick={onSideDrawerClick}>
-        <NavLinks />
+        <NavLinks isHomePage={pathname === '/'} />
       </SideDrawer>
     </>
   );

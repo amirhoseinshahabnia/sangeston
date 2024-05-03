@@ -257,3 +257,13 @@ main {
 .card.active .card-title {
   opacity: 0;
 }
+
+#footer {
+  overflow: hidden;
+  background-color: #16282c;
+  min-height: 650px;
+  background-image: url(/logo-opacity-10.svg);
+  background-repeat: no-repeat;
+  background-position: 40% -50px;
+  background-size: 60%;
+}
