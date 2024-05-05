@@ -12,7 +12,7 @@ type SongProps = {
     numberOfCards: number;
     globalColor: string;
   };
-  credit: {
+  music: {
     title: string;
     artwork: string;
     musicName: string;
@@ -28,7 +28,7 @@ type SongProps = {
     farsi?: string;
     english?: string;
   };
-  story: {
+  credit: {
     title: string;
     body?: string;
   };
@@ -55,8 +55,8 @@ const data: SongProps[] = [
       numberOfCards: 4,
       globalColor: '#051A27',
     },
-    credit: {
-      title: 'Credit',
+    music: {
+      title: 'Music',
       artwork: '/artwork.png',
       musicName: 'Song A',
       artistNames: ['Artist A', 'Artist B'],
@@ -73,8 +73,8 @@ const data: SongProps[] = [
       english:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     },
-    story: {
-      title: 'Story',
+    credit: {
+      title: 'Credit',
       body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     },
     listen: {
@@ -173,7 +173,7 @@ export default function Song() {
               <div className="card-title absolute right-0">
                 <p className="text-lg">{cardData.title}</p>
               </div>
-              {cardData.title === 'Credit' && (
+              {cardData.title === 'Music' && (
                 <>
                   <div
                     className="flex items-center gap-x-4 mx-0 my-auto"
@@ -224,7 +224,7 @@ export default function Song() {
                   <div id="english-lyrics">{cardData.english}</div>
                 </div>
               )}
-              {cardData.title === 'Story' && (
+              {cardData.title === 'Credit' && (
                 <div id="story">{cardData.body}</div>
               )}
               {cardData.title === 'Listen' && (
