@@ -16,20 +16,11 @@ const artistBio = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <section className="h-screen flex justify-center items-center">
+    <main className="">
+      {/* <section className="h-screen flex justify-center items-center">
         <div className="glitch-logo"></div>
-      </section>
+      </section> */}
       <div className="hero relative">
-        {/* <Image
-          priority
-          width={1512}
-          height={976}
-          src={hero.img}
-          alt={hero.title}
-          id="hero-img"
-          className="block w-full"
-        /> */}
         <div
           className="absolute bottom-0 left-0 right-0 md:inset-0 flex flex-col justify-center mx-auto w-full lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7x"
           id="hero-body-ctn"
