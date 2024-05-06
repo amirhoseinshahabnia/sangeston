@@ -49,11 +49,13 @@ body {
 header {
   z-index: 10;
   height: 75px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
 }
 
 header .menu {
   height: 40px;
   overflow: hidden;
+  margin-bottom: 10px;
 
   &:hover {
     .line {
@@ -274,6 +276,41 @@ main {
   max-width: 400px;
   background-color: var(--main-color);
   border-radius: 15px;
+}
+
+@media screen and (max-width: 767px) {
+  #hero-img {
+    height: 95vh;
+    object-fit: cover;
+    object-position: 67% center;
+  }
+
+  header {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.9),
+      rgba(0, 0, 0, 0)
+    );
+  }
+
+  #hero-body-ctn {
+    background: linear-gradient(to bottom, transparent, #0b0b0b);
+    /* padding: 50px 4.15% 25px; */
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  #hero-body-ctn {
+    padding: 50px 4.15% 25px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #hero-img {
+    height: 80vh;
+    object-fit: cover;
+    object-position: center;
+  }
 }
 
 @media screen and (max-width: 1023px) {

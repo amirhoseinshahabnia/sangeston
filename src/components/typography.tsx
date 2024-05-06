@@ -28,7 +28,7 @@ const SecondaryTitle = ({ htmlCopy, className, style }: SingleTypography) => {
 };
 
 const MainBody = ({ htmlCopy, className, style }: SingleTypography) => {
-  const classes = '';
+  const classes = 'text-lg lg:text-xl xl:text-2xl 2xl:text-3xl';
   return (
     <p className={classNames(classes, className)} style={style}>
       {parse(htmlCopy)}

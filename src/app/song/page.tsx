@@ -87,12 +87,6 @@ const data: SongProps[] = [
   },
 ];
 
-const artistBio = {
-  htmlCopy:
-    "Bijan, aka <span class='font-bold'>Sangstone</span>, was born in the summer of 1987 in Tehran, Iran. He grew up in Atisaz, spending most of his time playing soccer. His creativity was cultivated from an early age through different lessons in piano, painting and writing. When he was 13, his family and he migrated to the US. Shortly after, Bijan discovered poetry. Initially, he wrote poems and performed them for his family, who encouraged his new-found passion.",
-  img: '/Sang_Portrait_flare1-min.png',
-};
-
 export default function Song() {
   const sampleData = data[0];
 
