@@ -1,5 +1,6 @@
 import FooterListenLinks from './footerListenLinks';
 import FooterSocialLinks from './footerSocialLinks';
+import Typography from './typography';
 
 const Footer = () => {
   const date = new Date();
@@ -7,13 +8,11 @@ const Footer = () => {
     <footer id="footer" className="pb-4 pt-16 xl:pt-20 2xl:pt-24 relative">
       <div className="wrapper main-color flex flex-col mx-auto w-11/12 lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7x">
         <div className="get-in-touch mb-32 xl:mb-40 2xl:mb-48">
-          <h3 className="main-color text-3xl mb-16 lg:text-4xl xl:text-5xl 2xl:text-6xl xl:mb-20 2xl:mb-24">
-            Let&apos;s create
-            <br />
-            something
-            <br />
-            <span className="font-bold">great together</span>
-          </h3>
+          <Typography
+            variant="h2"
+            htmlCopy='Let&apos;s create<br />something<br /><span className="font-bold">great together</span>'
+            classes="main-color mb-16 xl:mb-20 2xl:mb-24"
+          />
           <p className="main-color">
             For collaborations send an email to:{' '}
             <a
