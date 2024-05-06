@@ -33,6 +33,12 @@ body {
   background: #000;
 }
 
+html.no-scroll {
+  max-height: 100vh;
+  max-height: 100dvh;
+  overflow: hidden;
+}
+
 .main-color {
   color: var(--main-color);
 }
@@ -150,7 +156,9 @@ main {
   z-index: 19;
   filter: blue(5px);
   transform: translateX(100%);
-  transition: transform 0.2s ease;
+  height: 100vh;
+  height: 100dvh;
+  transition: all 0.2s ease;
 
   &.active {
     transform: translateX(0);
@@ -275,7 +283,8 @@ main {
 
 @media screen and (max-width: 767px) {
   #hero-img {
-    height: 95vh;
+    height: 100vh;
+    height: 100svh;
     object-fit: cover;
     object-position: 67% center;
   }

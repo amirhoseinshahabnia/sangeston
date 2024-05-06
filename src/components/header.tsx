@@ -13,10 +13,17 @@ const Header = () => {
   const pathname = usePathname();
 
   const onMenuClick = () => {
+    if (document) {
+      document.documentElement.classList.add('no-scroll');
+    }
+
     setSideDrawerOpen(true);
   };
 
   const onSideDrawerClick = () => {
+    if (document) {
+      document.documentElement.classList.remove('no-scroll');
+    }
     setSideDrawerOpen(false);
   };
 
