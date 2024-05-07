@@ -281,6 +281,19 @@ main {
   border-radius: 15px;
 }
 
+.shout {
+  height: 100vh;
+}
+
+.shout h1 {
+  background-image: url(https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDRiN2UzbDlrYmpqejFkNXY3czNvNXUycnp1NWQxbHFvdHh4MWwxMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xThuWlT47FLpqr1giY/giphy.gif);
+  background-size: contain;
+  color: transparent;
+  -moz-background-clip: text;
+  -webkit-background-clip: text;
+  max-width: max-content;
+}
+
 @media screen and (max-width: 767px) {
   #hero-img {
     height: 100vh;
