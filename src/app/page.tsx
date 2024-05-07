@@ -17,11 +17,11 @@ const artistBio = {
 export default function Home() {
   return (
     <main className="">
-      <section className="h-screen flex justify-center items-center shout">
+      {/* <section className="h-screen flex justify-center items-center shout">
         <h1 className="main-color text-4xl lg:text-5xl 2xl:text-7xl uppercase font-bold">
           Sangestone
         </h1>
-      </section>
+      </section> */}
       <div className="hero relative">
         <div
           className="absolute bottom-0 left-0 right-0 md:inset-0 flex flex-col justify-center mx-auto w-full lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7x"
