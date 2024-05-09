@@ -65,6 +65,11 @@ header .menu {
   }
 }
 
+#main-logo {
+  display: block;
+  height: auto;
+}
+
 main {
   margin-top: -75px;
 }
@@ -292,6 +297,17 @@ main {
   -moz-background-clip: text;
   -webkit-background-clip: text;
   max-width: max-content;
+}
+
+#waveform-ctn {
+  min-width: 250px;
+}
+
+#play-btn svg {
+  color: #93feff;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
 }
 
 @media screen and (max-width: 767px) {

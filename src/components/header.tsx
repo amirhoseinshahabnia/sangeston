@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { usePathname } from 'next/navigation';
-import Image from 'next/image';
-import Link from 'next/link';
-import SideDrawer from './sideDrawer';
-import NavLinks from './navLinks';
+import { useState } from "react";
+import { usePathname } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import SideDrawer from "./sideDrawer";
+import NavLinks from "./navLinks";
 
 const Header = () => {
   const [sideDrawerOpen, setSideDrawerOpen] = useState(false);
@@ -14,7 +14,7 @@ const Header = () => {
 
   const onMenuClick = () => {
     if (document) {
-      document.documentElement.classList.add('no-scroll');
+      document.documentElement.classList.add("no-scroll");
     }
 
     setSideDrawerOpen(true);
@@ -22,7 +22,7 @@ const Header = () => {
 
   const onSideDrawerClick = () => {
     if (document) {
-      document.documentElement.classList.remove('no-scroll');
+      document.documentElement.classList.remove("no-scroll");
     }
     setSideDrawerOpen(false);
   };
@@ -39,6 +39,8 @@ const Header = () => {
                 height={47}
                 alt="Sangeston main logo"
                 className="hover:opacity-80"
+                id="main-logo"
+                priority
               />
             </Link>
           </div>
@@ -54,7 +56,7 @@ const Header = () => {
         </nav>
       </header>
       <SideDrawer show={sideDrawerOpen} onClick={onSideDrawerClick}>
-        <NavLinks isHomePage={pathname === '/'} />
+        <NavLinks isHomePage={pathname === "/"} />
       </SideDrawer>
     </>
   );
