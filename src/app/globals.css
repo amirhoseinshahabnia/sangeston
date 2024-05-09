@@ -233,6 +233,14 @@ main {
   }
 }
 
+.credit-body {
+  max-width: 259px;
+}
+
+.credit-body .bottom {
+  height: 40px;
+}
+
 #slide-0.active ~ #slide-1 {
   transform: translate3d(11%, 0px, -100px) scale(0.9);
 }
