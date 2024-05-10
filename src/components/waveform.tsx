@@ -24,7 +24,7 @@ const Waveform = ({ audio }: { audio: string }) => {
   };
 
   return (
-    <div id="audio-player" className="flex">
+    <div id="audio-player" className="flex items-center">
       {loadingPlayer ? (
         <Skeleton />
       ) : (
