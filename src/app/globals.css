@@ -208,10 +208,14 @@ main {
   top: calc(50% - 200px); */
   transition: transform 400ms ease;
   cursor: pointer;
+
+  .img-ctn {
+    height: 260px;
+  }
 }
 
 #credit-ctn {
-  height: 259px;
+  height: 260px;
 }
 
 .color-overlay {
@@ -234,7 +238,7 @@ main {
 }
 
 .credit-body {
-  max-width: 259px;
+  max-width: 260px;
 }
 
 .credit-body .bottom {

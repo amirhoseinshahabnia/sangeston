@@ -195,7 +195,7 @@ export default function Song() {
                         src={cardData.artwork}
                         alt={cardData.artwork}
                         width={256}
-                        height={259}
+                        height={260}
                         priority
                       />
                     </div>
