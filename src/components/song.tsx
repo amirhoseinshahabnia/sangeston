@@ -103,7 +103,7 @@ const Song = ({ data, id }: { data: SongProps; id: number }) => {
 
             <div className="card-body rounded-2xl absolute inset-0 py-8 px-16 flex">
               <div className="card-title absolute right-0">
-                <p className="text-lg">{cardData.title}</p>
+                <p className="text-lg -rotate-90">{cardData.title}</p>
               </div>
               {cardData.title === "Music" && (
                 <>

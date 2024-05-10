@@ -241,9 +241,6 @@ main {
   transition: opacity 0.4s ease;
   bottom: 40px;
   right: 5px;
-  p {
-    transform: rotate(-90deg);
-  }
 }
 
 .credit-body {
