@@ -1,22 +1,104 @@
-import Image from 'next/image';
-import Typography from '@/components/typography';
+"use client";
+import Image from "next/image";
+import { Element } from "react-scroll";
+import Typography from "@/components/typography";
+import Song, { SongProps } from "@/components/song";
 
 const hero = {
-  title: 'Sangestone',
-  subtitle: 'This is',
+  title: "Sangestone",
+  subtitle: "This is",
   // img: '/hero-sang-min.png',
-  img: '/hero-sang-2-min.png',
+  img: "/hero-sang-2-min.png",
 };
 
 const artistBio = {
   htmlCopy:
     "Bijan, aka <span class='font-bold'>Sangstone</span>, was born in the summer of 1987 in Tehran, Iran. He grew up in Atisaz, spending most of his time playing soccer. His creativity was cultivated from an early age through different lessons in piano, painting and writing. When he was 13, his family and he migrated to the US. Shortly after, Bijan discovered poetry. Initially, he wrote poems and performed them for his family, who encouraged his new-found passion.",
-  img: '/Sang_Portrait_flare1-min.png',
+  img: "/Sang_Portrait_flare1-min.png",
 };
+
+const data: SongProps[] = [
+  {
+    global: {
+      title: "global",
+      backgroundImg: "/artwork-bg.png",
+      numberOfCards: 4,
+      globalColor: "#051A27",
+    },
+    music: {
+      title: "Music",
+      artwork: "/artwork.png",
+      musicName: "Song A",
+      artistNames: ["Sangstone"],
+      composer: "Composer A",
+      lyricsBy: ["Sangstone"],
+      coverArtBy: "Sahar",
+      tag: "Latest Release",
+      songPath: "/chop-chop.mp3",
+    },
+    lyrics: {
+      title: "Lyrics",
+      farsi:
+        "این یک نوشته آزمایشی است که به طراحان و برنامه نویسان کمک میکند تا این عزیزان با بهره گیری از این نوشته تستی و آزمایشی بتوانند نمونه تکمیل شده از پروژه و طرح خودشان را به کارفرما نمایش دهند، استفاده از این متن تستی می تواند سرعت پیشرفت پروژه را افزایش دهد، و طراحان به جای تایپ و نگارش متن می توانند تنها با یک کپی و پست این متن را در کادرهای مختلف جایگزین نمائید. این نوشته توسط سایت لورم ایپسوم فارسی نگاشته شده است.",
+      english:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    },
+    credit: {
+      title: "Credit",
+      body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    },
+    listen: {
+      title: "Listen",
+      spotify: "#",
+      soundcloud: "#",
+      youtube: "#",
+      appleMusic: "#",
+    },
+  },
+  {
+    global: {
+      title: "global",
+      backgroundImg: "/artwork-bg.png",
+      numberOfCards: 4,
+      globalColor: "#442728",
+    },
+    music: {
+      title: "Music",
+      artwork: "/artwork.png",
+      musicName: "Song B",
+      artistNames: ["Sangstone", "Artist B"],
+      composer: "Composer A",
+      lyricsBy: ["Sangstone", "Artist B"],
+      coverArtBy: "Sahar",
+      tag: "Latest Release",
+      songPath: "/song.mp3",
+    },
+    lyrics: {
+      title: "Lyrics",
+      farsi:
+        "این یک نوشته آزمایشی است که به طراحان و برنامه نویسان کمک میکند تا این عزیزان با بهره گیری از این نوشته تستی و آزمایشی بتوانند نمونه تکمیل شده از پروژه و طرح خودشان را به کارفرما نمایش دهند، استفاده از این متن تستی می تواند سرعت پیشرفت پروژه را افزایش دهد، و طراحان به جای تایپ و نگارش متن می توانند تنها با یک کپی و پست این متن را در کادرهای مختلف جایگزین نمائید. این نوشته توسط سایت لورم ایپسوم فارسی نگاشته شده است.",
+      english:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    },
+    credit: {
+      title: "Credit",
+      body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    },
+    listen: {
+      title: "Listen",
+      spotify: "#",
+      soundcloud: "#",
+      youtube: "#",
+      appleMusic: "#",
+    },
+  },
+];
+
+// TODO: how does data fetching from contentful work on the client side??? Shouldn't we move it to server side?
 
 export default function Home() {
   return (
-    <main className="">
+    <main>
       {/* <section className="h-screen flex justify-center items-center shout">
         <h1 className="main-color text-4xl lg:text-5xl 2xl:text-7xl uppercase font-bold">
           Sangestone
@@ -48,6 +130,13 @@ export default function Home() {
           className="block w-full"
         />
       </div>
+      <Element name="music">
+        <section className="py-24" id="#music">
+          {data.map((song, i) => (
+            <Song key={i} data={song} id={i} />
+          ))}
+        </section>
+      </Element>
     </main>
   );
 }

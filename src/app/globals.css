@@ -199,6 +199,15 @@ main {
   }
 }
 
+.song-ctn {
+  width: 100%;
+  min-height: 400px;
+}
+
+.song-ctn:last-child {
+  margin-bottom: 0;
+}
+
 .card {
   width: 700px;
   height: 400px;
@@ -223,7 +232,7 @@ main {
 }
 
 .card.active {
-  z-index: 10;
+  z-index: 15 !important;
   scale: 1;
 }
 

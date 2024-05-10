@@ -1,10 +1,27 @@
-import Link from 'next/link';
+import Link from "next/link";
+import {
+  Link as ScrollLink,
+  Element,
+  Events,
+  animateScroll,
+  scrollSpy,
+  scroller,
+} from "react-scroll";
 
 type Props = {
   isHomePage: boolean;
 };
 
 const NavLinks = ({ isHomePage }: Props) => {
+  const scrollTo = (offset: number) => {
+    scroller.scrollTo("scroll-to-element", {
+      duration: 800,
+      delay: 0,
+      smooth: "easeInOutQuart",
+      offset: offset,
+    });
+  };
+
   if (!isHomePage) {
     return (
       <ul className="nav-links absolute flex flex-col top-8 right-8 lg:right-16 lg:top-16 text-center">
@@ -20,9 +37,14 @@ const NavLinks = ({ isHomePage }: Props) => {
   return (
     <ul className="nav-links absolute flex flex-col top-8 right-8 lg:right-16 lg:top-16 text-center">
       <li className="mb-6">
-        <a href="#" className="text-lg hover:opacity-80">
+        <ScrollLink
+          to="music"
+          smooth={true}
+          duration={500}
+          className="text-lg hover:opacity-80 cursor-pointer"
+        >
           Music
-        </a>
+        </ScrollLink>
       </li>
       <li className="mb-6">
         <a href="#" className="text-lg hover:opacity-80">

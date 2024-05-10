@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import classNames from "classnames";
 
 type SideDrawerProps = {
   show: boolean;
@@ -12,7 +12,7 @@ export default function SideDrawer({
   children,
 }: SideDrawerProps) {
   const clickHandler = (e: any) => {
-    if (e.target.localName === 'div') {
+    if (e.target.localName === "div") {
       onClick();
     }
   };
