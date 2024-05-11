@@ -1,13 +1,10 @@
-"use client";
 import Image from "next/image";
-import { Element } from "react-scroll";
 import Typography from "@/components/typography";
 import Song, { SongProps } from "@/components/song";
 
 const hero = {
   title: "Sangestone",
   subtitle: "This is",
-  // img: '/hero-sang-min.png',
   img: "/hero-sang-2-min.png",
 };
 
@@ -130,13 +127,11 @@ export default function Home() {
           className="block w-full"
         />
       </div>
-      <Element name="music">
-        <section className="py-24" id="#music">
-          {data.map((song, i) => (
-            <Song key={i} data={song} id={i} />
-          ))}
-        </section>
-      </Element>
+      <section className="py-24" id="music">
+        {data.map((song, i) => (
+          <Song key={i} data={song} id={i} />
+        ))}
+      </section>
     </main>
   );
 }
