@@ -39,6 +39,10 @@ html.no-scroll {
   overflow: hidden;
 }
 
+main {
+  overflow-x: hidden;
+}
+
 .main-color {
   color: var(--main-color);
 }
