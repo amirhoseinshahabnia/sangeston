@@ -52,7 +52,7 @@ main {
 }
 
 header {
-  z-index: 10;
+  z-index: 19;
   height: 75px;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
 }
@@ -244,7 +244,7 @@ main {
   opacity: 1;
   transition: opacity 0.4s ease;
   bottom: 30px;
-  right: -3px;
+  right: -1px;
 }
 
 .credit-body {
@@ -256,33 +256,33 @@ main {
 }
 
 #slide-0.active ~ #slide-1 {
-  transform: translate3d(11%, 0px, -100px) scale(0.9);
+  transform: translate3d(13%, 0px, -100px) scale(0.9);
 }
 
 #slide-0.active ~ #slide-2,
 #slide-1.active ~ #slide-2 {
-  transform: translate3d(21%, 0px, -200px) scale(0.8);
+  transform: translate3d(23%, 0px, -200px) scale(0.8);
 }
 
 #slide-0.active ~ #slide-3,
 #slide-1.active ~ #slide-3,
 #slide-2.active ~ #slide-3 {
-  transform: translate3d(31%, 0px, -300px) scale(0.7);
+  transform: translate3d(33%, 0px, -300px) scale(0.7);
 }
 
 #slide-0:has(+ .active),
 #slide-0:has(~ .active) {
-  transform: translate3d(11%, 0px, -100px) scale(0.9);
+  transform: translate3d(13%, 0px, -100px) scale(0.9);
   z-index: 9;
 }
 
 #slide-1:has(~ .active) {
-  transform: translate3d(21%, 0px, -200px) scale(0.8);
+  transform: translate3d(23%, 0px, -200px) scale(0.8);
   z-index: 8;
 }
 
 #slide-2:has(+ .active) {
-  transform: translate3d(31%, 0px, -300px) scale(0.7);
+  transform: translate3d(33%, 0px, -300px) scale(0.7);
   z-index: 7;
 }
 
@@ -420,6 +420,36 @@ main {
   #wave-skeleton,
   #waveform-ctn {
     min-width: 250px;
+  }
+  #slide-0.active ~ #slide-1 {
+    transform: translate3d(11%, 0px, -100px) scale(0.9);
+  }
+
+  #slide-0.active ~ #slide-2,
+  #slide-1.active ~ #slide-2 {
+    transform: translate3d(21%, 0px, -200px) scale(0.8);
+  }
+
+  #slide-0.active ~ #slide-3,
+  #slide-1.active ~ #slide-3,
+  #slide-2.active ~ #slide-3 {
+    transform: translate3d(31%, 0px, -300px) scale(0.7);
+  }
+
+  #slide-0:has(+ .active),
+  #slide-0:has(~ .active) {
+    transform: translate3d(11%, 0px, -100px) scale(0.9);
+    z-index: 9;
+  }
+
+  #slide-1:has(~ .active) {
+    transform: translate3d(21%, 0px, -200px) scale(0.8);
+    z-index: 8;
+  }
+
+  #slide-2:has(+ .active) {
+    transform: translate3d(31%, 0px, -300px) scale(0.7);
+    z-index: 7;
   }
 }
 

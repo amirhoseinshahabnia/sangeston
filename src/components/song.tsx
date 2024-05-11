@@ -187,7 +187,7 @@ const Song = ({ data, id }: { data: SongProps; id: number }) => {
 
   return (
     <div
-      className="song-ctn flex relative mb-12 lg:mb-24 ml-2 lg:ml-0 lg:items-center lg:justify-center"
+      className="song-ctn flex relative mb-12 lg:mb-24 ml-1 lg:ml-0 lg:items-center lg:justify-center"
       id={`card-${id}`}
     >
       {renderCards()}
