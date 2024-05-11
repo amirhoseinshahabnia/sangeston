@@ -127,7 +127,7 @@ export default function Home() {
           className="block w-full"
         />
       </div>
-      <section className="py-24" id="music">
+      <section className="py-16 lg:py-24" id="music">
         {data.map((song, i) => (
           <Song key={i} data={song} id={i} />
         ))}

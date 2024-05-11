@@ -6,7 +6,7 @@ type Props = {
 
 const NavLinks = ({ isHomePage }: Props) => {
   const handleMenuClick = (e: any) => {
-    e.preventDefault();
+    // e.preventDefault();
     const target = e.target as HTMLAnchorElement;
     const targetId = target.dataset.id as string;
     const targetElement = document.getElementById(targetId);

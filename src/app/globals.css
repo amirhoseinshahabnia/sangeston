@@ -201,7 +201,7 @@ main {
 
 .song-ctn {
   width: 100%;
-  min-height: 400px;
+  min-height: 250px;
 }
 
 .song-ctn:last-child {
@@ -209,22 +209,22 @@ main {
 }
 
 .card {
-  width: 700px;
-  height: 400px;
+  width: 83%;
+  aspect-ratio: 7 / 5;
   transform-style: preserve-3d;
-  /* position: absolute;
-  left: calc(50% - 350px);
-  top: calc(50% - 200px); */
   transition: transform 400ms ease;
   cursor: pointer;
-
-  .img-ctn {
-    height: 260px;
-  }
 }
 
+.card .img-ctn,
 #credit-ctn {
-  height: 260px;
+  height: 80%;
+}
+
+.card .card-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .color-overlay {
@@ -239,8 +239,8 @@ main {
 .card-title {
   opacity: 1;
   transition: opacity 0.4s ease;
-  bottom: 40px;
-  right: 5px;
+  bottom: 30px;
+  right: -3px;
 }
 
 .credit-body {
@@ -324,7 +324,7 @@ main {
 }
 
 #waveform-ctn {
-  min-width: 250px;
+  width: 100%;
 }
 
 #play-btn svg {
@@ -332,6 +332,10 @@ main {
   width: 30px;
   height: 30px;
   margin-right: 10px;
+}
+
+#wave-skeleton {
+  width: 100%;
 }
 
 @media screen and (max-width: 767px) {
@@ -356,12 +360,6 @@ main {
   }
 }
 
-@media screen and (max-width: 1023px) {
-  #hero-body-ctn {
-    padding: 50px 4.15% 25px;
-  }
-}
-
 @media screen and (min-width: 768px) {
   #hero-img {
     height: 80vh;
@@ -371,6 +369,13 @@ main {
 }
 
 @media screen and (max-width: 1023px) {
+  #hero-body-ctn {
+    padding: 50px 4.15% 25px;
+  }
+  .img-ctn,
+  .credit-body {
+    width: 50%;
+  }
   .signup-form h4 {
     max-width: 400px;
     margin-left: auto;
@@ -391,6 +396,26 @@ main {
   }
   .sign-form-placeholder {
     max-width: 330px;
+  }
+  .song-ctn {
+    min-height: 400px;
+  }
+  .card {
+    width: 700px;
+    aspect-ratio: 7 / 4;
+  }
+  .card .img-ctn,
+  #credit-ctn {
+    height: 260px;
+  }
+  .card-title {
+    bottom: 40px;
+    right: 5px;
+  }
+
+  #wave-skeleton,
+  #waveform-ctn {
+    min-width: 250px;
   }
 }
 

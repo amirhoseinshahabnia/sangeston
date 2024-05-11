@@ -73,7 +73,7 @@ const Song = ({ data, id }: { data: SongProps; id: number }) => {
         let xFactor = index > 2 ? 60 : index > 1 ? 20 : 0;
         components.push(
           <div
-            className={`card rounded-2xl absolute ${
+            className={`card rounded-2xl absolute overflow-hidden ${
               index === 0 ? "active" : ""
             }`}
             key={index}
@@ -92,7 +92,7 @@ const Song = ({ data, id }: { data: SongProps; id: number }) => {
               height={400}
               alt="artwork-a"
               priority
-              className="opacity-15"
+              className="opacity-15 card-bg"
             />
             <div
               className="rounded-2xl absolute inset-0 color-overlay"
@@ -101,19 +101,21 @@ const Song = ({ data, id }: { data: SongProps; id: number }) => {
               }}
             />
 
-            <div className="card-body rounded-2xl absolute inset-0 py-8 px-16 flex">
+            <div className="card-body rounded-2xl absolute inset-0 flex overflow-x-hidden overflow-y-auto py-4 px-6 lg:py-8 lg:px-16">
               <div className="card-title absolute right-0">
-                <p className="text-lg -rotate-90">{cardData.title}</p>
+                <p className="text-xs lg:text-lg -rotate-90">
+                  {cardData.title}
+                </p>
               </div>
               {cardData.title === "Music" && (
                 <>
                   <div
-                    className="flex items-center gap-x-4 mx-0 my-auto"
+                    className="flex items-center gap-x-2 lg:gap-x-4 mx-0 my-auto"
                     id="credit-ctn"
                   >
-                    <div className="absolute top-6 right-10">
+                    <div className="absolute top-2 right-4 lg:top-6 lg:right-10">
                       <p
-                        className="main-color text-sm p-3 rounded-lg"
+                        className="main-color text-xs lg:text-sm p-2 lg:p-3 rounded-lg"
                         style={{
                           backgroundColor: global.globalColor,
                         }}
@@ -132,10 +134,14 @@ const Song = ({ data, id }: { data: SongProps; id: number }) => {
                     </div>
                     <div className="credit-body flex flex-col justify-around h-full">
                       <div className="top">
-                        <h3>{cardData.musicName}</h3>
+                        <h3 className="text-sm lg:text-base">
+                          {cardData.musicName}
+                        </h3>
                         {cardData.artistNames.map(
                           (artist: string, i: number) => (
-                            <span key={i}>{artist} </span>
+                            <span key={i} className="text-sm lg:text-base">
+                              {artist}{" "}
+                            </span>
                           )
                         )}
                       </div>
@@ -153,8 +159,12 @@ const Song = ({ data, id }: { data: SongProps; id: number }) => {
               )}
               {cardData.title === "Lyrics" && (
                 <div>
-                  <div id="farsi-lyrics">{cardData.farsi}</div>
-                  <div id="english-lyrics">{cardData.english}</div>
+                  <div id="farsi-lyrics" className="text-sm lg:text-base">
+                    {cardData.farsi}
+                  </div>
+                  <div id="english-lyrics" className="text-sm lg:text-base">
+                    {cardData.english}
+                  </div>
                 </div>
               )}
               {cardData.title === "Credit" && (
@@ -177,7 +187,7 @@ const Song = ({ data, id }: { data: SongProps; id: number }) => {
 
   return (
     <div
-      className="song-ctn flex items-center justify-center relative mb-24"
+      className="song-ctn flex relative mb-12 lg:mb-24 ml-2 lg:ml-0 lg:items-center lg:justify-center"
       id={`card-${id}`}
     >
       {renderCards()}
