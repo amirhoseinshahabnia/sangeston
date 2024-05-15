@@ -41,10 +41,13 @@ export type SongProps = {
   };
 };
 
-const Song = ({ data, id }: { data: SongProps; id: number }) => {
-  const { global } = data;
+const Song = ({ data, id }: { data: any; id: number }) => {
+  const { globalSettings } = data;
 
-  const pallete = createMonochromPallete(global.globalColor, 4);
+  const pallete = createMonochromPallete(
+    globalSettings.fields.globalColor,
+    Object.keys(data).length - 2
+  );
 
   useEffect(() => {
     const allCards = document.querySelectorAll(`#card-${id} .card-body`);
@@ -68,8 +71,8 @@ const Song = ({ data, id }: { data: SongProps; id: number }) => {
     const components = [];
     let index = 0;
     for (let card in data) {
-      if (card !== "global") {
-        let cardData = data[card as keyof SongProps] as any;
+      if (card !== "globalSettings" && card !== "songTitle") {
+        let cardData = data[card].fields;
         let xFactor = index > 2 ? 60 : index > 1 ? 20 : 0;
         components.push(
           <div
@@ -87,10 +90,16 @@ const Song = ({ data, id }: { data: SongProps; id: number }) => {
             }}
           >
             <Image
-              src={global.backgroundImg}
-              width={700}
-              height={400}
-              alt="artwork-a"
+              src={`https:${globalSettings.fields.backgroundImg.fields.file.url}`}
+              width={
+                globalSettings.fields.backgroundImg.fields.file.details.image
+                  .width
+              }
+              height={
+                globalSettings.fields.backgroundImg.fields.file.details.image
+                  .height
+              }
+              alt={`https:${globalSettings.fields.backgroundImg.fields.title}`}
               priority
               className="opacity-15 card-bg"
             />
@@ -104,46 +113,49 @@ const Song = ({ data, id }: { data: SongProps; id: number }) => {
             <div className="card-body rounded-2xl absolute inset-0 flex overflow-x-hidden overflow-y-auto py-4 px-6 lg:py-8 lg:px-16">
               <div className="card-title absolute right-0">
                 <p className="text-xs lg:text-lg -rotate-90">
-                  {cardData.title}
+                  {cardData.cardTitle}
                 </p>
               </div>
-              {cardData.title === "Music" && (
+              {card === "music" && (
                 <>
                   <div
                     className="flex items-center gap-x-2 lg:gap-x-4 mx-0 my-auto"
                     id="credit-ctn"
                   >
                     <div className="absolute top-2 right-4 lg:top-6 lg:right-10">
-                      <p
-                        className="main-color text-xs lg:text-sm p-2 lg:p-3 rounded-lg"
-                        style={{
-                          backgroundColor: global.globalColor,
-                        }}
-                      >
-                        {cardData.tag}
-                      </p>
+                      {cardData.tags.map((tag: string, i: number) => (
+                        <p
+                          className="main-color text-xs lg:text-sm p-2 lg:p-3 rounded-lg"
+                          style={{
+                            backgroundColor: globalSettings.fields.globalColor,
+                          }}
+                          key={i}
+                        >
+                          {tag}
+                        </p>
+                      ))}
                     </div>
                     <div className="img-ctn">
                       <Image
-                        src={cardData.artwork}
-                        alt={cardData.artwork}
-                        width={256}
-                        height={260}
+                        src={`https:${cardData.artwork.fields.file.url}`}
+                        alt={cardData.artwork.fields.description}
+                        width={cardData.artwork.fields.file.details.image.width}
+                        height={
+                          cardData.artwork.fields.file.details.image.width
+                        }
                         priority
                       />
                     </div>
                     <div className="credit-body flex flex-col justify-around h-full">
                       <div className="top">
                         <h3 className="text-sm lg:text-base">
-                          {cardData.musicName}
+                          {cardData.title}
                         </h3>
-                        {cardData.artistNames.map(
-                          (artist: string, i: number) => (
-                            <span key={i} className="text-sm lg:text-base">
-                              {artist}{" "}
-                            </span>
-                          )
-                        )}
+                        {cardData.artists.map((artist: string, i: number) => (
+                          <span key={i} className="text-sm lg:text-base">
+                            {artist}{" "}
+                          </span>
+                        ))}
                       </div>
                       <div className="bottom">
                         {/* <p>{cardData.composer}</p>
@@ -151,13 +163,15 @@ const Song = ({ data, id }: { data: SongProps; id: number }) => {
                           <span key={i}>{artist} </span>
                         ))}
                         <p>Cover Art by: {cardData.coverArtBy}</p> */}
-                        <Waveform audio={cardData.songPath} />
+                        <Waveform
+                          audio={`https:${cardData.songPath.fields.file.url}`}
+                        />
                       </div>
                     </div>
                   </div>
                 </>
               )}
-              {cardData.title === "Lyrics" && (
+              {card === "lyrics" && (
                 <div>
                   <div id="farsi-lyrics" className="text-sm lg:text-base">
                     {cardData.farsi}
@@ -167,12 +181,13 @@ const Song = ({ data, id }: { data: SongProps; id: number }) => {
                   </div>
                 </div>
               )}
-              {cardData.title === "Credit" && (
-                <div id="story">{cardData.body}</div>
+              {card === "credit" && (
+                <div id="story">{JSON.stringify(cardData.body)}</div>
               )}
-              {cardData.title === "Listen" && (
+              {card === "listen" && (
                 <div>
-                  <h3>Listen</h3>
+                  <h3>{cardData.title}</h3>
+                  <p>{JSON.stringify(cardData)}</p>
                 </div>
               )}
             </div>
