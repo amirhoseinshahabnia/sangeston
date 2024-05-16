@@ -18,6 +18,7 @@ const Waveform = ({ audio }: { audio: string }) => {
     function resizePlayerWidth() {
       setScreenWidth(window.innerWidth);
     }
+    resizePlayerWidth();
 
     window.addEventListener("resize", resizePlayerWidth);
 
