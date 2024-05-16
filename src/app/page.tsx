@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { client } from "@/util/contentful";
 import Typography from "@/components/typography";
 import Song, { SongProps } from "@/components/song";
 
@@ -55,21 +56,17 @@ const data: SongProps[] = [
 ];
 
 async function getData() {
-  const res = await fetch(process.env.WEBSITE_URL + "/api/songs", {
-    next: { tags: ["songs"] },
+  const data = await client.getEntries({
+    content_type: "song",
   });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
+  return data;
 }
 
 // TODO: how does data fetching from contentful work on the client side??? Shouldn't we move it to server side?
 
 export default async function Home() {
-  const myData = await getData();
+  const data = await getData();
 
   return (
     <main>
@@ -106,7 +103,7 @@ export default async function Home() {
         />
       </div>
       <section className="py-16 lg:py-24" id="music">
-        {myData.data.items.map((song: any, i: number) => (
+        {data.items.map((song: any, i: number) => (
           <Song key={i} data={song.fields} id={i} />
         ))}
       </section>
