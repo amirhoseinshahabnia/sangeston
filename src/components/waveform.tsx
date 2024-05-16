@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import WavesurferPlayer from "@wavesurfer/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,6 +12,19 @@ const Waveform = ({ audio }: { audio: string }) => {
   const [loadingPlayer, setLoadingPlayer] = useState(true);
   const [wavesurfer, setWavesurfer] = useState<any>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(0);
+
+  useEffect(() => {
+    function resizePlayerWidth() {
+      setScreenWidth(window.innerWidth);
+    }
+
+    window.addEventListener("resize", resizePlayerWidth);
+
+    return () => {
+      resizePlayerWidth();
+    };
+  }, []);
 
   const onReady = (ws: any) => {
     setWavesurfer(ws);
@@ -43,7 +56,8 @@ const Waveform = ({ audio }: { audio: string }) => {
         className={classNames({ "sr-only": loadingPlayer })}
       >
         <WavesurferPlayer
-          height={40}
+          height={screenWidth < 1024 ? 30 : 40}
+          width={screenWidth < 1024 ? (screenWidth < 768 ? 110 : 200) : 250}
           cursorColor="#B3C3BD"
           waveColor="#93feff"
           progressColor="#442728"
