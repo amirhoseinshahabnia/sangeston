@@ -21,43 +21,6 @@ const data: SongProps[] = [
       title: "global",
       backgroundImg: "/artwork-bg.png",
       numberOfCards: 4,
-      globalColor: "#051A27",
-    },
-    music: {
-      title: "Music",
-      artwork: "/artwork.png",
-      musicName: "Song A",
-      artistNames: ["Sangstone"],
-      composer: "Composer A",
-      lyricsBy: ["Sangstone"],
-      coverArtBy: "Sahar",
-      tag: "Latest Release",
-      songPath: "/chop-chop.mp3",
-    },
-    lyrics: {
-      title: "Lyrics",
-      farsi:
-        "این یک نوشته آزمایشی است که به طراحان و برنامه نویسان کمک میکند تا این عزیزان با بهره گیری از این نوشته تستی و آزمایشی بتوانند نمونه تکمیل شده از پروژه و طرح خودشان را به کارفرما نمایش دهند، استفاده از این متن تستی می تواند سرعت پیشرفت پروژه را افزایش دهد، و طراحان به جای تایپ و نگارش متن می توانند تنها با یک کپی و پست این متن را در کادرهای مختلف جایگزین نمائید. این نوشته توسط سایت لورم ایپسوم فارسی نگاشته شده است.",
-      english:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    credit: {
-      title: "Credit",
-      body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    },
-    listen: {
-      title: "Listen",
-      spotify: "#",
-      soundcloud: "#",
-      youtube: "#",
-      appleMusic: "#",
-    },
-  },
-  {
-    global: {
-      title: "global",
-      backgroundImg: "/artwork-bg.png",
-      numberOfCards: 4,
       globalColor: "#442728",
     },
     music: {
@@ -93,11 +56,11 @@ const data: SongProps[] = [
 ];
 
 async function getData() {
-  const res = await client.getEntries({
-    content_type: "song",
+  const res = await fetch(process.env.WEBSITE_URL + "/api/songs", {
+    next: { tags: ["songs"] },
   });
 
-  return res;
+  return res.json();
 }
 
 // TODO: how does data fetching from contentful work on the client side??? Shouldn't we move it to server side?
@@ -140,7 +103,7 @@ export default async function Home() {
         />
       </div>
       <section className="py-16 lg:py-24" id="music">
-        {myData.items.map((song, i) => (
+        {myData.data.items.map((song: any, i: number) => (
           <Song key={i} data={song.fields} id={i} />
         ))}
       </section>

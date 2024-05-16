@@ -2,8 +2,17 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { BLOCKS } from "@contentful/rich-text-types";
+import {
+  faSpotify,
+  faSoundcloud,
+  faYoutube,
+  faItunes,
+} from "@fortawesome/free-brands-svg-icons";
 import { createMonochromPallete } from "@/util/colorsConversion";
 import Waveform from "@/components/waveform";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export type SongProps = {
   global: {
@@ -67,6 +76,26 @@ const Song = ({ data, id }: { data: any; id: number }) => {
     }
   }, []);
 
+  const renderOption = {
+    renderText: (text: string) => {
+      return text.split("\n").reduce((children: any, textSegment, index) => {
+        return [...children, index > 0 && <br key={index} />, textSegment];
+      }, []);
+    },
+    renderNode: {
+      [BLOCKS.EMBEDDED_ASSET]: (node: any, children: any) => {
+        return (
+          <Image
+            src={`https:${node.data.target.fields.file.url}`}
+            height={node.data.target.fields.file.details.image.height}
+            width={node.data.target.fields.file.details.image.width}
+            alt={node.data.target.fields.title}
+          />
+        );
+      },
+    },
+  };
+
   const renderCards = () => {
     const components = [];
     let index = 0;
@@ -99,7 +128,7 @@ const Song = ({ data, id }: { data: any; id: number }) => {
                 globalSettings.fields.backgroundImg.fields.file.details.image
                   .height
               }
-              alt={`https:${globalSettings.fields.backgroundImg.fields.title}`}
+              alt={globalSettings.fields.backgroundImg.fields.title}
               priority
               className="opacity-15 card-bg"
             />
@@ -182,12 +211,63 @@ const Song = ({ data, id }: { data: any; id: number }) => {
                 </div>
               )}
               {card === "credit" && (
-                <div id="story">{JSON.stringify(cardData.body)}</div>
+                <div id="story">
+                  {documentToReactComponents(cardData.body, renderOption)}
+                </div>
               )}
               {card === "listen" && (
-                <div>
-                  <h3>{cardData.title}</h3>
-                  <p>{JSON.stringify(cardData)}</p>
+                <div className="flex flex-col items-center justify-center mx-auto">
+                  <h3 className="mb-3 lg:mb-4">{cardData.title}</h3>
+                  <div className="flex gap-x-3 lg:gap-x-4 justify-center w-full">
+                    {cardData.spotify && (
+                      <a
+                        href={cardData.spotify}
+                        className="w-8 lg:w-12 inline-block hover:opacity-80"
+                        target="_blank"
+                      >
+                        <FontAwesomeIcon
+                          icon={faSpotify}
+                          className="h-full w-full"
+                        />
+                      </a>
+                    )}
+                    {cardData.soundcloud && (
+                      <a
+                        href={cardData.soundcloud}
+                        className="w-8 lg:w-12 inline-block hover:opacity-80"
+                        target="_blank"
+                      >
+                        <FontAwesomeIcon
+                          icon={faSoundcloud}
+                          className="h-full w-full"
+                        />
+                      </a>
+                    )}
+                    {cardData.youtube && (
+                      <a
+                        href={cardData.youtube}
+                        className="w-8 lg:w-12 inline-block hover:opacity-80"
+                        target="_blank"
+                      >
+                        <FontAwesomeIcon
+                          icon={faYoutube}
+                          className="h-full w-full"
+                        />
+                      </a>
+                    )}
+                    {cardData.appleMusic && (
+                      <a
+                        href={cardData.appleMusic}
+                        className="w-8 lg:w-12 inline-block hover:opacity-80"
+                        target="_blank"
+                      >
+                        <FontAwesomeIcon
+                          icon={faItunes}
+                          className="h-full w-full"
+                        />
+                      </a>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
