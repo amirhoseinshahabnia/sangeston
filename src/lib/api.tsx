@@ -82,7 +82,7 @@ function extractSongEntries(fetchResponse: any) {
   return fetchResponse?.data?.songCollection?.items;
 }
 
-export async function getAllArticles(
+export async function getAllSongs(
   limit = 15,
   // By default this function will return published content but will provide an option to
   // return draft content for reviewing articles before they are live

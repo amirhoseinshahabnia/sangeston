@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getAllArticles } from "@/lib/api";
+import { getAllSongs } from "@/lib/api";
 import Typography from "@/components/typography";
 import Song from "@/components/song";
 
@@ -16,7 +16,7 @@ const artistBio = {
 };
 
 export default async function Home() {
-  const songs = await getAllArticles();
+  const songs = await getAllSongs();
 
   return (
     <main>

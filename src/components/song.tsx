@@ -154,21 +154,23 @@ const Song = ({ data, id }: { data: any; id: number }) => {
                 <>
                   <div
                     className="flex items-center gap-x-2 lg:gap-x-4 mx-0 my-auto"
-                    id="credit-ctn"
+                    id="music-ctn"
                   >
-                    <div className="absolute top-2 right-4 lg:top-6 lg:right-10">
-                      {music.tags.map((tag: string, i: number) => (
-                        <p
-                          className="main-color text-xs lg:text-sm p-2 lg:p-3 rounded-lg"
-                          style={{
-                            backgroundColor: globalSettings.globalColor,
-                          }}
-                          key={i}
-                        >
-                          {tag}
-                        </p>
-                      ))}
-                    </div>
+                    {music.tags && (
+                      <div className="absolute top-2 right-4 lg:top-6 lg:right-10">
+                        {music.tags.map((tag: string, i: number) => (
+                          <p
+                            className="main-color text-xs lg:text-sm p-2 lg:p-3 rounded-lg"
+                            style={{
+                              backgroundColor: globalSettings.globalColor,
+                            }}
+                            key={i}
+                          >
+                            {tag}
+                          </p>
+                        ))}
+                      </div>
+                    )}
                     <div className="img-ctn">
                       <Image
                         src={music.artwork.url}
@@ -203,16 +205,20 @@ const Song = ({ data, id }: { data: any; id: number }) => {
               )}
               {card === "lyrics" && (
                 <div>
-                  <div id="farsi-lyrics" className="text-sm lg:text-base">
-                    {lyrics.farsi}
-                  </div>
-                  <div id="english-lyrics" className="text-sm lg:text-base">
-                    {lyrics.english}
-                  </div>
+                  {lyrics.farsi && (
+                    <div id="farsi-lyrics" className="text-sm lg:text-base">
+                      {lyrics.farsi}
+                    </div>
+                  )}
+                  {lyrics.english && (
+                    <div id="english-lyrics" className="text-sm lg:text-base">
+                      {lyrics.english}
+                    </div>
+                  )}
                 </div>
               )}
               {card === "credit" && (
-                <div id="story">
+                <div id="credit">
                   {documentToReactComponents(credit.body.json, renderOption)}
                 </div>
               )}
