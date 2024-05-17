@@ -175,12 +175,13 @@ main {
 }
 
 .glitch-logo {
-  width: 150px;
-  height: 103px;
+  width: 75px;
+  height: 51.5px;
   /* width: 200px;
   height: 155px; */
   background-image: url(/main-logo.png);
   background-size: cover;
+  filter: brightness(1.5);
   animation: glitch 1.5s infinite steps(1);
 }
 
