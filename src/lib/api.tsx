@@ -102,7 +102,7 @@ export async function getAllSongs(
 ) {
   const songs = await fetchGraphQL(
     `query {
-        songCollection(limit: ${limit}, order: sys_publishedAt_DESC, preview: ${
+        songCollection(limit: ${limit}, order: sys_firstPublishedAt_DESC, preview: ${
       isDraftMode ? "true" : "false"
     }) {
           items {
