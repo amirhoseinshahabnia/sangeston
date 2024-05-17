@@ -111,7 +111,7 @@ export async function getAllSongs(
         }
       }`,
     isDraftMode,
-    ["next"]
+    ["songs"]
   );
   return extractSongEntries(songs);
 }

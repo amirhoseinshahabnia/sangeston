@@ -182,9 +182,7 @@ const Song = ({ data, id }: { data: any; id: number }) => {
                     </div>
                     <div className="credit-body flex flex-col justify-around h-full">
                       <div className="top">
-                        <h3 className="text-sm lg:text-base">
-                          {data.songTitle}
-                        </h3>
+                        <h3 className="text-sm lg:text-base">{songTitle}</h3>
                         {music.artists.map((artist: string, i: number) => (
                           <span key={i} className="text-sm lg:text-base">
                             {artist}{" "}
