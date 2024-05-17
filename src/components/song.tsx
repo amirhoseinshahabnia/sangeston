@@ -51,10 +51,22 @@ export type SongProps = {
 };
 
 const Song = ({ data, id }: { data: any; id: number }) => {
-  const { globalSettings } = data;
+  const { songTitle, globalSettings, music, lyrics, credit, listen } = data;
+  const sortedComponents = {
+    songTitle: 100,
+    globalSettings: 99,
+    music: music.order,
+    lyrics: lyrics.order,
+    credit: credit.order,
+    listen: listen.order,
+  };
+  // @ts-ignore
+  const sortable: any = Object.entries(sortedComponents)
+    .sort(([, a], [, b]) => a - b)
+    .reduce((r, [key, value]) => ({ ...r, [key]: value }), {});
 
   const pallete = createMonochromPallete(
-    globalSettings.fields.globalColor,
+    globalSettings.globalColor,
     Object.keys(data).length - 2
   );
 
@@ -86,7 +98,7 @@ const Song = ({ data, id }: { data: any; id: number }) => {
       [BLOCKS.EMBEDDED_ASSET]: (node: any, children: any) => {
         return (
           <Image
-            src={`https:${node.data.target.fields.file.url}`}
+            src={node.data.target.fields.file.url}
             height={node.data.target.fields.file.details.image.height}
             width={node.data.target.fields.file.details.image.width}
             alt={node.data.target.fields.title}
@@ -99,9 +111,8 @@ const Song = ({ data, id }: { data: any; id: number }) => {
   const renderCards = () => {
     const components = [];
     let index = 0;
-    for (let card in data) {
+    for (let card in sortable) {
       if (card !== "globalSettings" && card !== "songTitle") {
-        let cardData = data[card].fields;
         let xFactor = index > 2 ? 60 : index > 1 ? 20 : 0;
         components.push(
           <div
@@ -119,16 +130,10 @@ const Song = ({ data, id }: { data: any; id: number }) => {
             }}
           >
             <Image
-              src={`https:${globalSettings.fields.backgroundImg.fields.file.url}`}
-              width={
-                globalSettings.fields.backgroundImg.fields.file.details.image
-                  .width
-              }
-              height={
-                globalSettings.fields.backgroundImg.fields.file.details.image
-                  .height
-              }
-              alt={globalSettings.fields.backgroundImg.fields.title}
+              src={globalSettings.backgroundImg.url}
+              width={globalSettings.backgroundImg.width}
+              height={globalSettings.backgroundImg.height}
+              alt={globalSettings.backgroundImg.title}
               priority
               className="opacity-15 card-bg"
             />
@@ -141,9 +146,7 @@ const Song = ({ data, id }: { data: any; id: number }) => {
 
             <div className="card-body rounded-2xl absolute inset-0 flex overflow-x-hidden overflow-y-auto py-4 px-6 lg:py-8 lg:px-16">
               <div className="card-title absolute right-0">
-                <p className="text-xs lg:text-lg -rotate-90">
-                  {cardData.cardTitle}
-                </p>
+                <p className="text-xs lg:text-lg -rotate-90">{songTitle}</p>
               </div>
               {card === "music" && (
                 <>
@@ -152,11 +155,11 @@ const Song = ({ data, id }: { data: any; id: number }) => {
                     id="credit-ctn"
                   >
                     <div className="absolute top-2 right-4 lg:top-6 lg:right-10">
-                      {cardData.tags.map((tag: string, i: number) => (
+                      {music.tags.map((tag: string, i: number) => (
                         <p
                           className="main-color text-xs lg:text-sm p-2 lg:p-3 rounded-lg"
                           style={{
-                            backgroundColor: globalSettings.fields.globalColor,
+                            backgroundColor: globalSettings.globalColor,
                           }}
                           key={i}
                         >
@@ -166,12 +169,10 @@ const Song = ({ data, id }: { data: any; id: number }) => {
                     </div>
                     <div className="img-ctn">
                       <Image
-                        src={`https:${cardData.artwork.fields.file.url}`}
-                        alt={cardData.artwork.fields.description}
-                        width={cardData.artwork.fields.file.details.image.width}
-                        height={
-                          cardData.artwork.fields.file.details.image.width
-                        }
+                        src={music.artwork.url}
+                        alt={music.artwork.description}
+                        width={music.artwork.width}
+                        height={music.artwork.width}
                         priority
                       />
                     </div>
@@ -180,7 +181,7 @@ const Song = ({ data, id }: { data: any; id: number }) => {
                         <h3 className="text-sm lg:text-base">
                           {data.songTitle}
                         </h3>
-                        {cardData.artists.map((artist: string, i: number) => (
+                        {music.artists.map((artist: string, i: number) => (
                           <span key={i} className="text-sm lg:text-base">
                             {artist}{" "}
                           </span>
@@ -192,9 +193,7 @@ const Song = ({ data, id }: { data: any; id: number }) => {
                           <span key={i}>{artist} </span>
                         ))}
                         <p>Cover Art by: {cardData.coverArtBy}</p> */}
-                        <Waveform
-                          audio={`https:${cardData.songPath.fields.file.url}`}
-                        />
+                        <Waveform audio={music.songPath.url} />
                       </div>
                     </div>
                   </div>
@@ -203,25 +202,25 @@ const Song = ({ data, id }: { data: any; id: number }) => {
               {card === "lyrics" && (
                 <div>
                   <div id="farsi-lyrics" className="text-sm lg:text-base">
-                    {cardData.farsi}
+                    {lyrics.farsi}
                   </div>
                   <div id="english-lyrics" className="text-sm lg:text-base">
-                    {cardData.english}
+                    {lyrics.english}
                   </div>
                 </div>
               )}
               {card === "credit" && (
                 <div id="story">
-                  {documentToReactComponents(cardData.body, renderOption)}
+                  {documentToReactComponents(credit.body.json, renderOption)}
                 </div>
               )}
               {card === "listen" && (
                 <div className="flex flex-col items-center justify-center mx-auto">
-                  <h3 className="mb-3 lg:mb-4">{cardData.title}</h3>
+                  <h3 className="mb-3 lg:mb-4">{listen.title}</h3>
                   <div className="flex gap-x-3 lg:gap-x-4 justify-center w-full">
-                    {cardData.spotify && (
+                    {listen.spotify && (
                       <a
-                        href={cardData.spotify}
+                        href={listen.spotify}
                         className="w-8 lg:w-12 inline-block hover:opacity-80"
                         target="_blank"
                       >
@@ -231,9 +230,9 @@ const Song = ({ data, id }: { data: any; id: number }) => {
                         />
                       </a>
                     )}
-                    {cardData.soundcloud && (
+                    {listen.soundcloud && (
                       <a
-                        href={cardData.soundcloud}
+                        href={listen.soundcloud}
                         className="w-8 lg:w-12 inline-block hover:opacity-80"
                         target="_blank"
                       >
@@ -243,9 +242,9 @@ const Song = ({ data, id }: { data: any; id: number }) => {
                         />
                       </a>
                     )}
-                    {cardData.youtube && (
+                    {listen.youtube && (
                       <a
-                        href={cardData.youtube}
+                        href={listen.youtube}
                         className="w-8 lg:w-12 inline-block hover:opacity-80"
                         target="_blank"
                       >
@@ -255,9 +254,9 @@ const Song = ({ data, id }: { data: any; id: number }) => {
                         />
                       </a>
                     )}
-                    {cardData.appleMusic && (
+                    {listen.appleMusic && (
                       <a
-                        href={cardData.appleMusic}
+                        href={listen.appleMusic}
                         className="w-8 lg:w-12 inline-block hover:opacity-80"
                         target="_blank"
                       >
