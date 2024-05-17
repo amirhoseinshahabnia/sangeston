@@ -146,7 +146,9 @@ const Song = ({ data, id }: { data: any; id: number }) => {
 
             <div className="card-body rounded-2xl absolute inset-0 flex overflow-x-hidden overflow-y-auto py-4 px-6 lg:py-8 lg:px-16">
               <div className="card-title absolute right-0">
-                <p className="text-xs lg:text-lg -rotate-90">{songTitle}</p>
+                <p className="text-xs lg:text-lg -rotate-90">
+                  {data[card].cardTitle}
+                </p>
               </div>
               {card === "music" && (
                 <>
