@@ -7,7 +7,11 @@ import Link from "next/link";
 import SideDrawer from "./sideDrawer";
 import NavLinks from "./navLinks";
 
-const Header = () => {
+type Props = {
+  navLinks: any[];
+};
+
+const Header = ({ navLinks }: Props) => {
   const [sideDrawerOpen, setSideDrawerOpen] = useState(false);
 
   const pathname = usePathname();
@@ -56,7 +60,7 @@ const Header = () => {
         </nav>
       </header>
       <SideDrawer show={sideDrawerOpen} onClick={onSideDrawerClick}>
-        <NavLinks isHomePage={pathname === "/"} />
+        <NavLinks isHomePage={pathname === "/"} navLinks={navLinks} />
       </SideDrawer>
     </>
   );

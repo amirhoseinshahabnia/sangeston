@@ -1,8 +1,12 @@
-import FooterListenLinks from './footerListenLinks';
-import FooterSocialLinks from './footerSocialLinks';
-import Typography from './typography';
+import FooterListenLinks from "./footerListenLinks";
+import FooterSocialLinks from "./footerSocialLinks";
+import Typography from "./typography";
 
-const Footer = () => {
+type Props = {
+  data: any;
+};
+
+const Footer = ({ data }: Props) => {
   const date = new Date();
   return (
     <footer id="footer" className="pb-4 pt-16 xl:pt-20 2xl:pt-24 relative">
@@ -14,7 +18,7 @@ const Footer = () => {
             classes="main-color mb-16 xl:mb-20 2xl:mb-24"
           />
           <p className="main-color">
-            For collaborations send an email to:{' '}
+            For collaborations send an email to:{" "}
             <a
               href="mailto:collab@sang.com"
               className="underline hover:opacity-80"
@@ -35,11 +39,11 @@ const Footer = () => {
           </div>
           <div className="song-links flex flex-col items-center order-first mb-8 lg:order-1 lg:mb-0 ">
             <h4 className="mb-4">Listen to Sang&apos;s songs here</h4>
-            <FooterListenLinks />
+            <FooterListenLinks links={data.soundHubLinks} />
           </div>
           <div className="social links flex flex-col items-center mb-8 lg:order-1 lg:mb-0">
             <h4 className="mb-4">Social</h4>
-            <FooterSocialLinks />
+            <FooterSocialLinks links={data.socialLinks} />
           </div>
         </div>
       </div>

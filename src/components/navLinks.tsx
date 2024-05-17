@@ -2,9 +2,10 @@ import Link from "next/link";
 
 type Props = {
   isHomePage: boolean;
+  navLinks: any[];
 };
 
-const NavLinks = ({ isHomePage }: Props) => {
+const NavLinks = ({ isHomePage, navLinks }: Props) => {
   const handleMenuClick = (e: any) => {
     // e.preventDefault();
     const target = e.target as HTMLAnchorElement;
@@ -33,33 +34,19 @@ const NavLinks = ({ isHomePage }: Props) => {
 
   return (
     <ul className="nav-links absolute flex flex-col top-8 right-8 lg:right-16 lg:top-16 text-center">
-      <li className="mb-6">
-        <a
-          data-id="music"
-          className="cursor-pointer text-lg hover:opacity-80"
-          onClick={(e) => handleMenuClick(e)}
-        >
-          Music
-        </a>
-      </li>
-      <li className="mb-6">
-        <a
-          data-id="bio"
-          className="cursor-pointer text-lg hover:opacity-80"
-          onClick={(e) => handleMenuClick(e)}
-        >
-          Bio
-        </a>
-      </li>
-      <li>
-        <a
-          data-id="contact"
-          className="cursor-pointer text-lg hover:opacity-80"
-          onClick={(e) => handleMenuClick(e)}
-        >
-          Contacts
-        </a>
-      </li>
+      {navLinks.map((item: any, i: number) => {
+        return (
+          <li key={i} className="mb-6">
+            <a
+              data-id={item.dataId}
+              className="cursor-pointer text-lg hover:opacity-80"
+              onClick={(e) => handleMenuClick(e)}
+            >
+              {item.title}
+            </a>
+          </li>
+        );
+      })}
     </ul>
   );
 };

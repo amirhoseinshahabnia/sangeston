@@ -55,7 +55,19 @@ const SONGS_GRAPHQL_FIELDS = `
     }
 `;
 
-async function fetchGraphQL(query: string, preview = false) {
+const GLOBAL_CONFIG_ID = "3zK7PEPN5mfrId2yvQHD39";
+
+const GLOBAL_CONFIG_FIELDS = `
+    navLinks
+    footer
+    songsBackground {
+      url
+      title
+      description
+    }
+`;
+
+async function fetchGraphQL(query: string, preview = false, tags: string[]) {
   return fetch(
     `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,
     {
@@ -73,7 +85,7 @@ async function fetchGraphQL(query: string, preview = false) {
       body: JSON.stringify({ query }),
       // Associate all fetches for articles with an "articles" cache tag so content can
       // be revalidated or updated from Contentful on publish
-      next: { tags: ["songs"] },
+      next: { tags },
     }
   ).then((response) => response.json());
 }
@@ -98,7 +110,22 @@ export async function getAllSongs(
           }
         }
       }`,
-    isDraftMode
+    isDraftMode,
+    ["next"]
   );
   return extractSongEntries(songs);
+}
+
+export async function getGlobalConfig() {
+  const globalConfig = await fetchGraphQL(
+    `query {
+    globalConfig(id: "${GLOBAL_CONFIG_ID}") {
+      ${GLOBAL_CONFIG_FIELDS}
+    }
+  }`,
+    false,
+    ["global"]
+  );
+
+  return globalConfig?.data?.globalConfig;
 }

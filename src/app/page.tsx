@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getAllSongs } from "@/lib/api";
+import { getAllSongs, getGlobalConfig } from "@/lib/api";
 import Typography from "@/components/typography";
 import Song from "@/components/song";
 
@@ -17,6 +17,7 @@ const artistBio = {
 
 export default async function Home() {
   const songs = await getAllSongs();
+  const globalConfig = await getGlobalConfig();
 
   return (
     <main>
@@ -52,7 +53,11 @@ export default async function Home() {
           className="block w-full"
         />
       </div>
-      <section className="py-16 lg:py-24" id="music">
+      <section
+        className="py-16 lg:py-24"
+        id="music"
+        style={{ backgroundImage: `url(${globalConfig.songsBackground.url})` }}
+      >
         {songs.map((song: any, i: number) => (
           <Song key={i} data={song} id={i} />
         ))}
