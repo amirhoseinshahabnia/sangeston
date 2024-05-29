@@ -51,7 +51,7 @@ const Hero = () => {
         className="block w-full"
       />
       <div
-        className="scroll-hero main-color absolute bottom-1 flex flex-col items-center hover:opacity-80 cursor-pointer"
+        className="scroll-hero main-color absolute bottom-1 hidden md:flex flex-col items-center hover:opacity-80 cursor-pointer"
         onClick={handleScrollClick}
       >
         <span className="animate-bounce">Scroll down</span>

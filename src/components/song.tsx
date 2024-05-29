@@ -157,7 +157,7 @@ const Song = ({ data, id }: { data: any; id: number }) => {
                     id="music-ctn"
                   >
                     {music.tags && (
-                      <div className="absolute top-2 right-4 lg:top-6 lg:right-10">
+                      <div className="absolute top-2 right-4 lg:top-6 lg:right-10 flex gap-x-1">
                         {music.tags.map((tag: string, i: number) => (
                           <p
                             className="main-color text-xs lg:text-sm p-2 lg:p-3 rounded-lg"

@@ -29,7 +29,7 @@ export default async function Home() {
 
       <Hero />
       <section
-        className="py-16 lg:py-24"
+        className="py-16 lg:py-24 bg-no-repeat bg-cover"
         id="music"
         style={{ backgroundImage: `url(${globalConfig.songsBackground.url})` }}
       >

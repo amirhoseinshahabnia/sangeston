@@ -346,7 +346,7 @@ main {
 }
 
 #play-btn svg {
-  color: #93feff;
+  color: var(--main-color);
   width: 25px;
   height: 25px;
   margin-right: 10px;

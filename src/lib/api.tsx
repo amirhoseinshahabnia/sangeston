@@ -83,7 +83,7 @@ async function fetchGraphQL(query: string, preview = false, tags: string[]) {
         }`,
       },
       body: JSON.stringify({ query }),
-      // Associate all fetches for articles with an "articles" cache tag so content can
+      // Associate all fetches with tags
       // be revalidated or updated from Contentful on publish
       next: { tags },
     }
