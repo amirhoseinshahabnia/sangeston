@@ -38,7 +38,7 @@ const Header = ({ navLinks }: Props) => {
           <div className="logo-ctn">
             <Link href="/">
               <Image
-                src="/main-logo.png"
+                src="/main-logo-updated.png"
                 width={75}
                 height={47}
                 alt="Sangeston main logo"

@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { getAllSongs, getGlobalConfig } from "@/lib/api";
-import Typography from "@/components/typography";
+import Hero from "@/components/hero";
 import Song from "@/components/song";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const hero = {
   title: "Sangestone",
@@ -27,32 +27,7 @@ export default async function Home() {
         </h1>
       </section> */}
 
-      <div className="hero relative">
-        <div
-          className="absolute bottom-0 left-0 right-0 md:inset-0 flex flex-col justify-center mx-auto w-full lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7x"
-          id="hero-body-ctn"
-        >
-          <Typography
-            htmlCopy={hero.subtitle}
-            variant="p"
-            classes="main-color mb-2 xl:mb-4 2xl:mb-6"
-          />
-          <Typography
-            variant="h1"
-            htmlCopy={hero.title}
-            classes="main-color font-bold uppercase tracking-wider"
-          />
-        </div>
-        <Image
-          priority
-          width={1512}
-          height={700}
-          src={hero.img}
-          alt={hero.title}
-          id="hero-img"
-          className="block w-full"
-        />
-      </div>
+      <Hero />
       <section
         className="py-16 lg:py-24"
         id="music"

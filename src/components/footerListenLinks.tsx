@@ -4,7 +4,6 @@ import {
   faSoundcloud,
   faYoutube,
   faItunes,
-  IconDefinition,
 } from "@fortawesome/free-brands-svg-icons";
 
 type Props = {

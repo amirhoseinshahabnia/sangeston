@@ -22,7 +22,7 @@ const NavLinks = ({ isHomePage, navLinks }: Props) => {
 
   if (!isHomePage) {
     return (
-      <ul className="nav-links absolute flex flex-col top-8 right-8 lg:right-16 lg:top-16 text-center">
+      <ul className="nav-links absolute flex flex-col top-8 right-8 lg:right-16 lg:top-16 text-center main-color">
         <li className="mb-6">
           <Link href="/" className="text-lg hover:opacity-80">
             Return to Home
@@ -33,7 +33,7 @@ const NavLinks = ({ isHomePage, navLinks }: Props) => {
   }
 
   return (
-    <ul className="nav-links absolute flex flex-col top-8 right-8 lg:right-16 lg:top-16 text-center">
+    <ul className="nav-links absolute flex flex-col top-8 right-8 lg:right-16 lg:top-16 text-center main-color">
       {navLinks.map((item: any, i: number) => {
         return (
           <li key={i} className="mb-6">
