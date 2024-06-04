@@ -103,6 +103,31 @@ main {
   animation-play-state: paused;
 }
 
+.hero h1 {
+  background-image: linear-gradient(
+    to right,
+    var(--main-color) 0%,
+    #f4f4f5 10%,
+    var(--main-color) 20%,
+    var(--main-color) 100%
+  );
+  background-clip: text;
+  /* text-fill-color: transparent; */
+  color: transparent;
+  background-size: 200% 100%;
+  background-position: 50% 0;
+  animation: bgPos 2s linear 3;
+}
+
+@keyframes bgPos {
+  0% {
+    background-position: 50% 0;
+  }
+  100% {
+    background-position: -150% 0;
+  }
+}
+
 @keyframes left-line-anim {
   0%,
   100% {

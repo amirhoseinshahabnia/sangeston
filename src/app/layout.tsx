@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Roboto } from "next/font/google";
 import { getGlobalConfig } from "@/lib/api";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({
+  weight: ["100", "300", "400", "500", "700"],
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Sangeston | Bijan's Official Site",
@@ -21,7 +25,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={roboto.className}>
         <Header navLinks={globalConfig.navLinks} />
         {children}
         <Footer data={globalConfig.footer} />

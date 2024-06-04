@@ -7,7 +7,7 @@ import Typography from "./typography";
 
 const data = {
   title: "Sangestone",
-  subtitle: "This is",
+  subtitle: "Welcome to",
   img: "/hero-sang-2-min.png",
 };
 
@@ -33,12 +33,12 @@ const Hero = () => {
         <Typography
           htmlCopy={data.subtitle}
           variant="p"
-          classes="main-color mb-2 xl:mb-4 2xl:mb-6"
+          classes="main-color mb-2 xl:mb-4 2xl:mb-6 max-w-fit"
         />
         <Typography
           variant="h1"
           htmlCopy={data.title}
-          classes="main-color font-bold uppercase tracking-wider"
+          classes="font-bold uppercase tracking-wider max-w-fit"
         />
       </div>
       <Image
@@ -54,7 +54,7 @@ const Hero = () => {
         className="scroll-hero main-color absolute bottom-1 hidden md:flex flex-col items-center hover:opacity-80 cursor-pointer"
         onClick={handleScrollClick}
       >
-        <span className="animate-bounce">Scroll down</span>
+        <span className="animate-bounce">Enter the world</span>
         <FontAwesomeIcon icon={faChevronDown} size="3x" fontWeight={100} />
       </div>
     </div>
