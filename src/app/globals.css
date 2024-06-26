@@ -3,22 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 39, 79, 91;
+  --background-end-rgb: 28, 57, 65;
   /* --main-color: #b2c3bd; */
   --main-color: #c4cfe2;
   --secondary-color: #b2c3bd;
   --dark-green: #1c3941;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 39, 79, 91;
     --background-end-rgb: 28, 57, 65;
   }
-}
+} */
 
 @layer utilities {
   .text-balance {
