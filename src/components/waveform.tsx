@@ -59,8 +59,8 @@ const Waveform = ({ audio }: { audio: string }) => {
         <WavesurferPlayer
           height={screenWidth < 1024 ? 30 : 40}
           width={screenWidth < 1024 ? (screenWidth < 768 ? 110 : 200) : 250}
-          cursorColor="#B3C3BD"
-          waveColor="#c4cfe2"
+          cursorColor="#e7ecf3"
+          waveColor="#626871"
           progressColor="#442728"
           url={audio}
           dragToSeek

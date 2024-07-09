@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,25 +16,34 @@ const Header = ({ navLinks }: Props) => {
 
   const pathname = usePathname();
 
-  const onMenuClick = () => {
-    if (document) {
-      document.documentElement.classList.add("no-scroll");
-    }
-
-    setSideDrawerOpen(true);
-  };
-
   const onSideDrawerClick = () => {
-    if (document) {
-      document.documentElement.classList.remove("no-scroll");
-    }
     setSideDrawerOpen(false);
   };
+
+  // close side-drawer on anywhere click that is not in side-drawer or menu btn
+  useEffect(() => {
+    function hideDrawer(e: any) {
+      if (
+        e.target.id !== "side-drawer" &&
+        ![...e.target.classList].includes("menu") &&
+        ![...e.target.classList].includes("line")
+      ) {
+        setSideDrawerOpen(false);
+      }
+    }
+
+    window.addEventListener("click", hideDrawer);
+
+    // cleanup
+    return () => {
+      window.removeEventListener("click", hideDrawer);
+    };
+  }, []);
 
   return (
     <>
       <header className="main-header sticky top-0 flex items-center">
-        <nav className="flex items-center justify-between mx-auto w-11/12 lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7x ">
+        <nav className="flex items-center justify-between mx-auto w-11/12  ">
           <div className="logo-ctn">
             <Link href="/">
               <Image
@@ -51,7 +60,7 @@ const Header = ({ navLinks }: Props) => {
           <div></div>
           <div
             className="menu flex items-end gap-x-2 hover:opacity-80 cursor-pointer"
-            onClick={onMenuClick}
+            onClick={() => setSideDrawerOpen(true)}
           >
             <div className="line left-line"></div>
             <div className="line center-line"></div>

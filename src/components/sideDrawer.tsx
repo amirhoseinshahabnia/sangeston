@@ -11,16 +11,17 @@ export default function SideDrawer({
   onClick,
   children,
 }: SideDrawerProps) {
-  // const clickHandler = (e: any) => {
-  //   if (e.target.localName === "div") {
-  //     onClick();
-  //   }
-  // };
+  // run onclick props if the click is on item that is not the side-drawer itself
+  const clickHandler = (e: any) => {
+    if (e.target.id !== "side-drawer") {
+      onClick();
+    }
+  };
 
   return (
     <div
       id="side-drawer"
-      onClick={onClick}
+      onClick={clickHandler}
       className={classNames({ active: show })}
     >
       {children}

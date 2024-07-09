@@ -187,7 +187,10 @@ main {
 
 #side-drawer {
   position: fixed;
-  inset: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 30%;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 19;
   filter: blue(5px);
@@ -424,13 +427,26 @@ main {
   .card {
     height: 245px;
   }
+
+  #side-drawer {
+    width: 60%;
+  }
 }
 
 @media screen and (min-width: 768px) {
+  header {
+    height: 100px;
+  }
+  main {
+    margin-top: -100px;
+  }
   #hero-img {
     height: 100vh;
     object-fit: cover;
     object-position: center;
+  }
+  #side-drawer {
+    max-width: 300px;
   }
 }
 
