@@ -1,5 +1,5 @@
-import classNames from 'classnames';
-import parse from 'html-react-parser';
+import classNames from "classnames";
+import parse from "html-react-parser";
 
 type SingleTypography = {
   htmlCopy: string;
@@ -8,7 +8,7 @@ type SingleTypography = {
 };
 
 const MainTitle = ({ htmlCopy, className, style }: SingleTypography) => {
-  const classes = 'text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl';
+  const classes = "text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl";
 
   return (
     <h1 className={classNames(classes, className)} style={style}>
@@ -18,7 +18,7 @@ const MainTitle = ({ htmlCopy, className, style }: SingleTypography) => {
 };
 
 const SecondaryTitle = ({ htmlCopy, className, style }: SingleTypography) => {
-  const classes = 'text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl';
+  const classes = "text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl";
 
   return (
     <h2 className={classNames(classes, className)} style={style}>
@@ -28,7 +28,16 @@ const SecondaryTitle = ({ htmlCopy, className, style }: SingleTypography) => {
 };
 
 const MainBody = ({ htmlCopy, className, style }: SingleTypography) => {
-  const classes = 'text-lg lg:text-xl xl:text-2xl 2xl:text-3xl';
+  const classes = "text-lg lg:text-xl xl:text-2xl 2xl:text-3xl";
+  return (
+    <p className={classNames(classes, className)} style={style}>
+      {parse(htmlCopy)}
+    </p>
+  );
+};
+
+const BodySmall = ({ htmlCopy, className, style }: SingleTypography) => {
+  const classes = "text-sm lg:text-base xl:text-lg 2xl:text-xl";
   return (
     <p className={classNames(classes, className)} style={style}>
       {parse(htmlCopy)}
@@ -40,6 +49,7 @@ const variantsMap = {
   h1: MainTitle,
   h2: SecondaryTitle,
   p: MainBody,
+  p2: BodySmall,
 };
 
 type TypographyProps = {

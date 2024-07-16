@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Hero from "@/components/hero";
-import Song from "@/components/song";
+import Songs from "@/components/songs";
 import Typography from "@/components/typography";
 import { getAllSongs, getGlobalConfig } from "@/lib/api";
 
@@ -14,6 +14,8 @@ export default async function Home() {
   const songs = await getAllSongs();
   const globalConfig = await getGlobalConfig();
 
+  console.log("[homepage] songs:", songs);
+
   return (
     <main>
       {/* <section className="h-screen flex justify-center items-center shout">
@@ -24,13 +26,11 @@ export default async function Home() {
 
       <Hero />
       <section
-        className="py-16 lg:py-24 bg-no-repeat bg-cover"
+        className="py-16 lg:py-32 bg-no-repeat bg-cover relative"
         id="music"
         style={{ backgroundImage: `url(${globalConfig.songsBackground.url})` }}
       >
-        {songs.map((song: any, i: number) => (
-          <Song key={i} data={song} id={i} />
-        ))}
+        <Songs songs={songs} />
       </section>
       <section id="bio">
         <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto w-full lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7x">

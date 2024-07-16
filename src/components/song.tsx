@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Image from "next/image";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS } from "@contentful/rich-text-types";
+import classNames from "classnames";
 import {
   faSpotify,
   faSoundcloud,
@@ -11,6 +12,7 @@ import {
   faItunes,
 } from "@fortawesome/free-brands-svg-icons";
 import { createMonochromPallete } from "@/util/colorsConversion";
+import Typography from "./typography";
 import Waveform from "@/components/waveform";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -287,9 +289,24 @@ const Song = ({ data, id }: { data: any; id: number }) => {
 
   return (
     <div
-      className="song-ctn flex relative mb-12 lg:mb-24 ml-1 lg:ml-0 lg:items-center lg:justify-center"
+      className="song-ctn flex relative mb-20 lg:mb-44 ml-1 lg:ml-0 lg:items-center lg:justify-center"
       id={`card-${id}`}
     >
+      <div
+        className={classNames(
+          "year-ctn absolute inset-0 flex flex-col justify-center mx-auto w-full lg:max-w-5xl xl:max-w-7xl",
+          {
+            active: id === 0,
+          }
+        )}
+      >
+        <Typography
+          htmlCopy={`${globalSettings.year}`}
+          variant="p2"
+          classes="max-w-fit"
+        />
+        <div className="hr-line" />
+      </div>
       {renderCards()}
     </div>
   );

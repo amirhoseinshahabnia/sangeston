@@ -13,6 +13,7 @@ const SONGS_GRAPHQL_FIELDS = `
         }
         numberOfCards
         order
+        year
     }
     music {
         cardTitle

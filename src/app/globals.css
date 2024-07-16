@@ -399,6 +399,44 @@ main {
   opacity: 0.8;
 }
 
+.timeline {
+  overflow: hidden;
+  z-index: 4;
+}
+
+.timeline-active {
+  /* transition: transform 0.1s linear; */
+}
+
+.year-ctn {
+  z-index: 5;
+  gap: 10px;
+}
+
+.year-ctn .hr-line,
+.year-ctn p {
+  transition: all 0.5s ease;
+  transition-delay: 0.2s;
+}
+
+.year-ctn .hr-line {
+  height: 9px;
+  width: 500px;
+  background-color: #031315;
+}
+
+.year-ctn.active .hr-line {
+  background-color: rgba(143, 151, 165, 1);
+}
+
+.year-ctn p {
+  color: #031315;
+}
+
+.year-ctn.active p {
+  color: rgba(143, 151, 165, 1);
+}
+
 @media screen and (max-width: 767px) {
   #hero-img {
     height: 100vh;
@@ -447,6 +485,24 @@ main {
   }
   #side-drawer {
     max-width: 300px;
+  }
+  .timeline {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 10px;
+    background-color: #031315;
+  }
+  .timeline-active {
+    height: 800px;
+    width: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(143, 151, 165, 0) 0,
+      rgba(143, 151, 165, 1) 50%,
+      rgba(143, 151, 165, 0) 100%
+    );
   }
 }
 
@@ -607,5 +663,11 @@ main {
 @media screen and (min-width: 1536px) {
   #footer {
     background-position: 150px top;
+  }
+  .year-ctn {
+    left: -150px;
+  }
+  .year-ctn p {
+    padding-left: 40px;
   }
 }
