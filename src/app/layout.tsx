@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { draftMode } from "next/headers";
 import { Inter, Roboto } from "next/font/google";
 import { getGlobalConfig } from "@/lib/api";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import PreviewBanner from "@/components/previewBanner";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,6 +24,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const globalConfig = await getGlobalConfig();
+  const { isEnabled } = draftMode();
 
   return (
     <html lang="en">
@@ -29,6 +32,7 @@ export default async function RootLayout({
         <Header navLinks={globalConfig.navLinks} />
         {children}
         <Footer data={globalConfig.footer} />
+        {isEnabled && <PreviewBanner />}
       </body>
     </html>
   );

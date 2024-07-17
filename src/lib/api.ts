@@ -103,7 +103,7 @@ export async function getAllSongs(
 ) {
   const songs = await fetchGraphQL(
     `query {
-        songCollection(limit: ${limit}, order: sys_firstPublishedAt_DESC, preview: ${
+        songCollection(limit: ${limit}, order: sys_publishedAt_DESC, preview: ${
       isDraftMode ? "true" : "false"
     }) {
           items {
@@ -117,14 +117,14 @@ export async function getAllSongs(
   return extractSongEntries(songs);
 }
 
-export async function getGlobalConfig() {
+export async function getGlobalConfig(isDraftMode = false) {
   const globalConfig = await fetchGraphQL(
     `query {
     globalConfig(id: "${GLOBAL_CONFIG_ID}") {
       ${GLOBAL_CONFIG_FIELDS}
     }
   }`,
-    false,
+    isDraftMode,
     ["global"]
   );
 

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { draftMode } from "next/headers";
 import Hero from "@/components/hero";
 import Songs from "@/components/songs";
 import Typography from "@/components/typography";
@@ -11,8 +12,11 @@ const artistBio = {
 };
 
 export default async function Home() {
-  const songs = await getAllSongs();
-  const globalConfig = await getGlobalConfig();
+  const { isEnabled } = draftMode();
+
+  // pass draftmode to fetch functions to show NOT published posts as well
+  const songs = await getAllSongs(20, isEnabled);
+  const globalConfig = await getGlobalConfig(isEnabled);
 
   return (
     <main>
