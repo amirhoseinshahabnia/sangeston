@@ -14,8 +14,6 @@ export default async function Home() {
   const songs = await getAllSongs();
   const globalConfig = await getGlobalConfig();
 
-  console.log("[homepage] songs:", songs);
-
   return (
     <main>
       {/* <section className="h-screen flex justify-center items-center shout">
@@ -26,7 +24,7 @@ export default async function Home() {
 
       <Hero />
       <section
-        className="py-20 lg:py-44 bg-no-repeat bg-cover relative"
+        className="bg-no-repeat bg-cover relative"
         id="music"
         style={{ backgroundImage: `url(${globalConfig.songsBackground.url})` }}
       >
