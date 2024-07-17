@@ -3,33 +3,40 @@
 import { useRef, useEffect } from "react";
 import Song from "./song";
 
-let options = {
-  root: null,
-  rootMargin: "130px 0px -340px 0px",
-  threshold: 0.85,
-};
-
 const Songs = ({ songs }: { songs: any }) => {
   const songsRef = useRef<HTMLDivElement>(null);
   const activeTimeline = useRef<HTMLDivElement>(null);
 
   // handle scroll functionality
   useEffect(() => {
+    let allYearsIndicators = document.querySelectorAll(".year-ctn");
     function handleScroll(e: any) {
       if (songsRef.current && activeTimeline.current) {
         const tlrRefRect = songsRef.current.getBoundingClientRect();
-
-        if (tlrRefRect.y > 0) {
+        const activeTLRect = activeTimeline.current.getBoundingClientRect();
+        if (tlrRefRect.y > 180) {
           activeTimeline.current.style.transform = "translateY(0)";
         } else if (
-          tlrRefRect.y <= 0 &&
+          tlrRefRect.y <= 180 &&
           tlrRefRect.y >= -1 * tlrRefRect.height
         ) {
           // move the active tl
           activeTimeline.current.style.transform = `translateY(${
-            -1 * tlrRefRect.y
+            -1 * tlrRefRect.y + 180
           }px)`;
         }
+
+        allYearsIndicators.forEach((year) => {
+          if (
+            year.getBoundingClientRect().y <=
+              activeTLRect.y + activeTLRect.height - 220 &&
+            year.getBoundingClientRect().y > -activeTLRect.height / 3
+          ) {
+            year.classList.add("active");
+          } else {
+            year.classList.remove("active");
+          }
+        });
       }
     }
 
@@ -39,24 +46,6 @@ const Songs = ({ songs }: { songs: any }) => {
     () => {
       return document.removeEventListener("scroll", handleScroll);
     };
-  }, []);
-
-  useEffect(() => {
-    function handleYearAnimation(
-      entries: IntersectionObserverEntry[],
-      _observer: any
-    ) {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("active");
-        } else {
-          entry.target.classList.remove("active");
-        }
-      });
-    }
-    let observer = new IntersectionObserver(handleYearAnimation, options);
-    let allYearsIndicators = document.querySelectorAll(".year-ctn");
-    allYearsIndicators.forEach((year) => observer.observe(year));
   }, []);
 
   return (
