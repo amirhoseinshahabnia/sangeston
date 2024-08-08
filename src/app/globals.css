@@ -527,12 +527,12 @@ main {
     margin-right: auto;
   }
   .song-ctn {
-    width: 90%;
+    width: 85%;
   }
 
   .song-ctn,
   .card {
-    height: 550px;
+    height: 600px;
   }
   .card {
     aspect-ratio: 0.7;
@@ -555,12 +555,29 @@ main {
     margin-right: auto;
   }
 
-  .credit-body .bottom {
+  .credit-body .bottom,
+  .timeline,
+  .year-ctn .hr-line {
     display: none;
+  }
+  .year-ctn {
+    aspect-ratio: 0.7;
+    height: 600px;
+    width: auto;
+    justify-content: flex-start;
+  }
+
+  .year-ctn p {
+    color: var(--main-color);
+    transform: rotate(-90deg);
+    margin-left: -10%;
+    margin-top: 50px;
+    font-size: 16px;
+    letter-spacing: 5px;
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 768px) and (max-width: 1023px) {
   /* .card {
     aspect-ratio: 7 /4;
     width: 550px;
@@ -607,6 +624,34 @@ main {
   #slide-2:has(+ .active) {
     transform: translate3d(32%, 0px, -300px) scale(0.7);
     z-index: 7;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+  .timeline {
+    left: 25px;
+  }
+  .year-ctn {
+    max-width: 90% !important;
+  }
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1350px) {
+  .timeline {
+    left: 80px !important;
+  }
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1535px) {
+  .timeline {
+    left: 50px;
+  }
+  .year-ctn {
+    max-width: 90% !important;
+  }
+
+  .year-ctn p {
+    padding-left: 25px;
   }
 }
 
