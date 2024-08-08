@@ -6,12 +6,13 @@ import Song from "./song";
 const MIN_SCREEN_WIDTH_FOR_SCROLL = 1024;
 
 const Songs = ({ songs }: { songs: any }) => {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [screenWidth, setScreenWidth] = useState(0);
   const songsRef = useRef<HTMLDivElement>(null);
   const activeTimeline = useRef<HTMLDivElement>(null);
 
   // handle scroll functionality
   useEffect(() => {
+    setScreenWidth(window?.innerWidth);
     let allYearsIndicators = document.querySelectorAll(".year-ctn");
     function handleScroll(e: any) {
       if (screenWidth >= MIN_SCREEN_WIDTH_FOR_SCROLL) {
