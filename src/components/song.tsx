@@ -155,11 +155,11 @@ const Song = ({ data, id }: { data: any; id: number }) => {
               {card === "music" && (
                 <>
                   <div
-                    className="flex items-center gap-x-2 lg:gap-x-4 mx-0 my-auto"
+                    className="flex items-center gap-x-2 lg:gap-x-4 mx-auto my-auto flex-col lg:flex-row lg:mx-0"
                     id="music-ctn"
                   >
                     {music.tags && (
-                      <div className="absolute top-2 right-4 lg:top-6 lg:right-10 flex gap-x-1">
+                      <div className="absolute top-4 right-4 lg:top-6 lg:right-10 flex gap-x-1">
                         {music.tags.map((tag: string, i: number) => (
                           <p
                             className="main-color text-xs lg:text-sm p-2 lg:p-3 rounded-lg"
@@ -180,13 +180,16 @@ const Song = ({ data, id }: { data: any; id: number }) => {
                         width={music.artwork.width}
                         height={music.artwork.width}
                         priority
+                        className="rounded-xl lg:rounded-none"
                       />
                     </div>
-                    <div className="credit-body flex flex-col justify-around h-full">
+                    <div className="credit-body flex flex-col justify-around order-first text-center mb-5 lg:order-2 lg:text-left lg:h-full lg:mb-0">
                       <div className="top">
-                        <h3 className="text-sm lg:text-base">{songTitle}</h3>
+                        <h3 className="text-xl mb-3 lg:mb-0 lg:text-base">
+                          {songTitle}
+                        </h3>
                         {music.artists.map((artist: string, i: number) => (
-                          <span key={i} className="text-sm lg:text-base">
+                          <span key={i} className="text-base lg:text-base">
                             {artist}{" "}
                           </span>
                         ))}
@@ -289,7 +292,7 @@ const Song = ({ data, id }: { data: any; id: number }) => {
 
   return (
     <div
-      className="song-ctn flex relative mb-20 lg:mb-44 ml-1 lg:ml-0 lg:items-center lg:justify-center"
+      className="song-ctn flex relative mb-20 mx-auto lg:mb-44 lg:items-center lg:justify-center"
       id={`card-${id}`}
     >
       <div

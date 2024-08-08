@@ -517,22 +517,56 @@ main {
   }
   .img-ctn,
   .credit-body {
-    width: 50%;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
   .signup-form h4 {
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
   }
+  .song-ctn {
+    width: 90%;
+  }
+
+  .song-ctn,
+  .card {
+    height: 550px;
+  }
+  .card {
+    aspect-ratio: 0.7;
+    width: auto;
+    max-width: 100%;
+  }
+
+  #music-ctn {
+    height: auto;
+    width: 100%;
+  }
+
+  .img-ctn > img {
+    height: auto;
+    object-fit: cover;
+    width: 100%;
+    aspect-ratio: 1;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .credit-body .bottom {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
-  .card {
+  /* .card {
     aspect-ratio: 7 /4;
     width: 550px;
-  }
+  } */
   .song-ctn {
-    height: 315px;
+    /* height: 315px; */
     justify-content: center;
   }
   .card .img-ctn {
