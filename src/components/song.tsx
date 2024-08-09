@@ -155,7 +155,7 @@ const Song = ({ data, id }: { data: any; id: number }) => {
               {card === "music" && (
                 <>
                   <div
-                    className="flex items-center gap-x-2 lg:gap-x-4 mx-auto my-auto flex-col lg:flex-row lg:mx-0"
+                    className="flex items-center gap-x-2 lg:gap-x-4 mx-auto lg:my-auto flex-col lg:flex-row lg:mx-0"
                     id="music-ctn"
                   >
                     {music.tags && (
@@ -308,6 +308,32 @@ const Song = ({ data, id }: { data: any; id: number }) => {
         <div className="hr-line" />
       </div>
       {renderCards()}
+      <div className="absolute pb-4 z-50 flex justify-between  mobile-slider-control lg:hidden">
+        <div className="left-arrow-ctn flex items-center">
+          <Image
+            src="/arrow-prev.png"
+            height={28}
+            width={40}
+            alt="Slider Previous Arrow"
+            className="mr-2  cursor-pointer hover:opacity-80"
+          />
+          <p className="main-color text-sm" style={{ color: "#678f99" }}>
+            Previous
+          </p>
+        </div>
+        <div className="right-arrow-ctn flex items-center">
+          <p className="text-sm" style={{ color: "#678f99" }}>
+            Next
+          </p>
+          <Image
+            src="/arrow-next.png"
+            height={28}
+            width={40}
+            alt="Slider Next Arrow"
+            className="ml-2  cursor-pointer hover:opacity-80"
+          />
+        </div>
+      </div>
     </div>
   );
 };
