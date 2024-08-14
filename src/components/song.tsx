@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS } from "@contentful/rich-text-types";
@@ -53,6 +53,7 @@ export type SongProps = {
 };
 
 const Song = ({ data, id }: { data: any; id: number }) => {
+  const [activeSlide, setActiveSlide] = useState(0);
   const { songTitle, globalSettings, music, lyrics, credit, listen } = data;
   const sortedComponents = {
     songTitle: 100,
@@ -62,6 +63,9 @@ const Song = ({ data, id }: { data: any; id: number }) => {
     credit: credit.order,
     listen: listen.order,
   };
+
+  const sliderWreapperRef = useRef<HTMLDivElement>(null);
+
   // @ts-ignore
   const sortable: any = Object.entries(sortedComponents)
     .sort(([, a], [, b]) => a - b)
@@ -89,6 +93,28 @@ const Song = ({ data, id }: { data: any; id: number }) => {
       });
     }
   }, []);
+
+  const prevArrowClickHandler = () => {
+    if (activeSlide !== 0) {
+      setActiveSlide(activeSlide - 1);
+      if (sliderWreapperRef.current) {
+        sliderWreapperRef.current.style.transform = `translateX(calc(${-(
+          activeSlide - 1
+        )} * 100% - ${activeSlide - 1} * 75px))`;
+      }
+    }
+  };
+
+  const nextArrowClickHandler = () => {
+    if (activeSlide !== 3) {
+      setActiveSlide(activeSlide + 1);
+      if (sliderWreapperRef.current) {
+        sliderWreapperRef.current.style.transform = `translateX(calc(${-(
+          activeSlide + 1
+        )} * 100% - ${activeSlide + 1} * 75px))`;
+      }
+    }
+  };
 
   const renderOption = {
     renderText: (text: string) => {
@@ -118,7 +144,7 @@ const Song = ({ data, id }: { data: any; id: number }) => {
         let xFactor = index > 2 ? 60 : index > 1 ? 20 : 0;
         components.push(
           <div
-            className={`card rounded-2xl absolute overflow-hidden ${
+            className={`card rounded-2xl lg:absolute overflow-hidden ${
               index === 0 ? "active" : ""
             }`}
             key={index}
@@ -147,7 +173,7 @@ const Song = ({ data, id }: { data: any; id: number }) => {
             />
 
             <div className="card-body rounded-2xl absolute inset-0 flex overflow-x-hidden overflow-y-auto py-4 px-6 lg:py-8 lg:px-16">
-              <div className="card-title absolute right-0">
+              <div className="card-title hidden absolute right-0 lg:block">
                 <p className="text-xs lg:text-lg -rotate-90">
                   {data[card].cardTitle}
                 </p>
@@ -182,6 +208,59 @@ const Song = ({ data, id }: { data: any; id: number }) => {
                         priority
                         className="rounded-xl lg:rounded-none"
                       />
+                    </div>
+                    <div
+                      className="flex items-center justify-center gap-x-4 mt-7 lg:hidden"
+                      id="listen-mobile"
+                    >
+                      {listen.spotify && (
+                        <a
+                          href={listen.spotify}
+                          className="w-8 lg:w-12 inline-block hover:opacity-80"
+                          target="_blank"
+                        >
+                          <FontAwesomeIcon
+                            icon={faSpotify}
+                            className="h-full w-full"
+                          />
+                        </a>
+                      )}
+                      {listen.soundcloud && (
+                        <a
+                          href={listen.soundcloud}
+                          className="w-8 lg:w-12 inline-block hover:opacity-80"
+                          target="_blank"
+                        >
+                          <FontAwesomeIcon
+                            icon={faSoundcloud}
+                            className="h-full w-full"
+                          />
+                        </a>
+                      )}
+                      {listen.youtube && (
+                        <a
+                          href={listen.youtube}
+                          className="w-8 lg:w-12 inline-block hover:opacity-80"
+                          target="_blank"
+                        >
+                          <FontAwesomeIcon
+                            icon={faYoutube}
+                            className="h-full w-full"
+                          />
+                        </a>
+                      )}
+                      {listen.appleMusic && (
+                        <a
+                          href={listen.appleMusic}
+                          className="w-8 lg:w-12 inline-block hover:opacity-80"
+                          target="_blank"
+                        >
+                          <FontAwesomeIcon
+                            icon={faItunes}
+                            className="h-full w-full"
+                          />
+                        </a>
+                      )}
                     </div>
                     <div className="credit-body flex flex-col justify-around order-first text-center mb-5 lg:order-2 lg:text-left lg:h-full lg:mb-0">
                       <div className="top">
@@ -307,22 +386,40 @@ const Song = ({ data, id }: { data: any; id: number }) => {
         />
         <div className="hr-line" />
       </div>
-      {renderCards()}
+      <div className="slider-wrapper" ref={sliderWreapperRef}>
+        {renderCards()}
+      </div>
       <div className="absolute pb-4 z-50 flex justify-between  mobile-slider-control lg:hidden">
-        <div className="left-arrow-ctn flex items-center">
+        <div
+          className={classNames(
+            "arrow-ctn flex items-center cursor-pointer hover:opacity-80",
+            {
+              disabled: activeSlide === 0,
+            }
+          )}
+          onClick={prevArrowClickHandler}
+        >
           <Image
             src="/arrow-prev.png"
             height={28}
             width={40}
             alt="Slider Previous Arrow"
-            className="mr-2  cursor-pointer hover:opacity-80"
+            className="mr-2 arrow-icon"
           />
-          <p className="main-color text-sm" style={{ color: "#678f99" }}>
+          <p className="text-sm" style={{ color: "#bcc5d3" }}>
             Previous
           </p>
         </div>
-        <div className="right-arrow-ctn flex items-center">
-          <p className="text-sm" style={{ color: "#678f99" }}>
+        <div
+          className={classNames(
+            "arrow-ctn flex items-center cursor-pointer hover:opacity-80",
+            {
+              disabled: activeSlide === 3,
+            }
+          )}
+          onClick={nextArrowClickHandler}
+        >
+          <p className="text-sm" style={{ color: "#bcc5d3" }}>
             Next
           </p>
           <Image
@@ -330,7 +427,7 @@ const Song = ({ data, id }: { data: any; id: number }) => {
             height={28}
             width={40}
             alt="Slider Next Arrow"
-            className="ml-2  cursor-pointer hover:opacity-80"
+            className="ml-2 arrow-icon"
           />
         </div>
       </div>

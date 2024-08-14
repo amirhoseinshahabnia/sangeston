@@ -297,37 +297,6 @@ main {
   height: 30px;
 }
 
-#slide-0.active ~ #slide-1 {
-  transform: translate3d(13%, 0px, -100px) scale(0.9);
-}
-
-#slide-0.active ~ #slide-2,
-#slide-1.active ~ #slide-2 {
-  transform: translate3d(23%, 0px, -200px) scale(0.8);
-}
-
-#slide-0.active ~ #slide-3,
-#slide-1.active ~ #slide-3,
-#slide-2.active ~ #slide-3 {
-  transform: translate3d(33%, 0px, -300px) scale(0.7);
-}
-
-#slide-0:has(+ .active),
-#slide-0:has(~ .active) {
-  transform: translate3d(13%, 0px, -100px) scale(0.9);
-  z-index: 9;
-}
-
-#slide-1:has(~ .active) {
-  transform: translate3d(23%, 0px, -200px) scale(0.8);
-  z-index: 8;
-}
-
-#slide-2:has(+ .active) {
-  transform: translate3d(33%, 0px, -300px) scale(0.7);
-  z-index: 7;
-}
-
 .card.active .card-title {
   opacity: 0;
 }
@@ -528,7 +497,14 @@ main {
   }
   .song-ctn {
     width: 85%;
-    justify-content: center;
+  }
+
+  .slider-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 100%);
+    justify-content: start;
+    gap: 75px;
+    transition: transform 0.2s ease-in-out;
   }
 
   .song-ctn,
@@ -539,11 +515,12 @@ main {
     aspect-ratio: 0.7;
     width: auto;
     max-width: 100%;
+    margin: 0 auto;
   }
 
   #music-ctn {
     width: 100%;
-    height: 524px;
+    height: 100%;
     justify-content: center;
   }
 
@@ -564,7 +541,7 @@ main {
   }
   .year-ctn {
     aspect-ratio: 0.7;
-    height: 600px;
+    height: 640px;
     width: auto;
     justify-content: flex-start;
   }
@@ -572,7 +549,7 @@ main {
   .year-ctn p {
     color: var(--main-color);
     transform: rotate(-90deg);
-    margin-left: -10%;
+    margin-left: -9%;
     margin-top: 50px;
     font-size: 16px;
     letter-spacing: 5px;
@@ -594,48 +571,31 @@ main {
     padding-left: 0;
     padding-right: 0;
   }
+
+  .arrow-ctn {
+    transition: opacity 0.2s linear;
+  }
+
+  .arrow-ctn p {
+    user-select: none;
+  }
+
+  .arrow-ctn.disabled {
+    opacity: 0.2;
+    cursor: no-drop;
+  }
+
+  .arrow-ctn.disabled:hover {
+    opacity: 0.2;
+  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-  .song-ctn {
-    /* height: 315px; */
-    justify-content: center;
-  }
   .credit-body .bottom {
     width: 145px;
   }
   #wave-skeleton {
     width: 200px;
-  }
-  #slide-0.active ~ #slide-1 {
-    transform: translate3d(12%, 0px, -100px) scale(0.9);
-  }
-
-  #slide-0.active ~ #slide-2,
-  #slide-1.active ~ #slide-2 {
-    transform: translate3d(22%, 0px, -200px) scale(0.8);
-  }
-
-  #slide-0.active ~ #slide-3,
-  #slide-1.active ~ #slide-3,
-  #slide-2.active ~ #slide-3 {
-    transform: translate3d(32%, 0px, -300px) scale(0.7);
-  }
-
-  #slide-0:has(+ .active),
-  #slide-0:has(~ .active) {
-    transform: translate3d(12%, 0px, -100px) scale(0.9);
-    z-index: 9;
-  }
-
-  #slide-1:has(~ .active) {
-    transform: translate3d(22%, 0px, -200px) scale(0.8);
-    z-index: 8;
-  }
-
-  #slide-2:has(+ .active) {
-    transform: translate3d(32%, 0px, -300px) scale(0.7);
-    z-index: 7;
   }
 }
 
@@ -710,6 +670,16 @@ main {
   .card-title {
     bottom: 40px;
     right: 5px;
+  }
+
+  .slider-wrapper {
+    transform: translateX(0) !important;
+    min-height: 400px;
+    width: 100%;
+    position: relative;
+    z-index: 9;
+    display: flex;
+    justify-content: center;
   }
 
   #slide-0.active ~ #slide-1 {
