@@ -62,7 +62,7 @@ const Songs = ({ songs }: { songs: any }) => {
 
   return (
     <div className="songs py-20 lg:py-44" ref={songsRef}>
-      <div className="absolute inset-0 mx-auto w-full lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7x">
+      <div className="absolute inset-0 mx-auto w-full lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7x">
         <div className="timeline">
           <div className="timeline-active" ref={activeTimeline} />
         </div>

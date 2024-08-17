@@ -255,6 +255,7 @@ main {
   transform-style: preserve-3d;
   transition: transform 400ms ease;
   cursor: pointer;
+  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.3);
 }
 
 .card .img-ctn,
@@ -392,18 +393,23 @@ main {
 }
 
 .year-ctn .hr-line {
-  height: 9px;
+  height: 5px;
   width: 500px;
-  background-color: #031315;
+  background: linear-gradient(to right, rgba(3, 19, 21, 0), #031315 20%);
 }
 
 .year-ctn.active .hr-line {
-  background-color: rgba(143, 151, 165, 1);
+  background: linear-gradient(
+    to right,
+    rgba(143, 151, 165, 0) 0,
+    rgba(143, 151, 165, 1) 20%
+  );
   scale: 1.1 1;
 }
 
 .year-ctn p {
   color: #031315;
+  transform: rotate(-90deg);
 }
 
 .year-ctn.active p {
@@ -464,7 +470,7 @@ main {
     top: 0;
     bottom: 0;
     left: 0;
-    width: 10px;
+    width: 5px;
     background-color: #031315;
   }
   .timeline-active {
@@ -603,14 +609,11 @@ main {
   .timeline {
     left: 25px;
   }
-  .year-ctn {
-    max-width: 90% !important;
+  .year-ctn p {
+    padding-bottom: 20px;
   }
-}
-
-@media screen and (min-width: 1280px) and (max-width: 1350px) {
-  .timeline {
-    left: 80px !important;
+  .year-ctn .hr-line {
+    background: linear-gradient(to right, rgba(3, 19, 21, 0), #031315 10%);
   }
 }
 
@@ -618,12 +621,9 @@ main {
   .timeline {
     left: 50px;
   }
-  .year-ctn {
-    max-width: 90% !important;
-  }
 
   .year-ctn p {
-    padding-left: 25px;
+    padding-left: 20px;
   }
 }
 
@@ -731,10 +731,10 @@ main {
     background-position: 150px top;
   }
   .year-ctn {
-    left: -150px;
+    left: 0;
   }
   .year-ctn p {
-    padding-left: 40px;
+    padding-left: 30px;
   }
 }
 

@@ -376,7 +376,7 @@ const Song = ({ data, id }: { data: any; id: number }) => {
     >
       <div
         className={classNames(
-          "year-ctn absolute inset-0 flex flex-col justify-center mx-auto w-full lg:max-w-5xl xl:max-w-7xl"
+          "year-ctn absolute inset-0 flex flex-col justify-center mx-auto w-full lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl"
         )}
       >
         <Typography
