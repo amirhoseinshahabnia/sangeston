@@ -234,6 +234,26 @@ main {
   }
 }
 
+@keyframes drop {
+  0% {
+    transform-origin: center;
+    opacity: 0;
+  }
+  17% {
+    transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 30deg);
+    opacity: 1;
+  }
+  30%,
+  49% {
+    transform: translate3d(0, -40%, 0) rotate3d(0, 0, 1, -20deg);
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate3d(0, 0, 0, 0deg);
+  }
+}
+
 .scroll-hero {
   left: 50%;
   transform: translateX(-50%);
@@ -414,6 +434,15 @@ main {
 
 .year-ctn.active p {
   color: rgba(143, 151, 165, 1);
+}
+
+.hero h1 span {
+  display: inline-block;
+  transform: translateY(-600%);
+  color: var(--main-color);
+  animation: drop 1.6s forwards;
+  opacity: 0;
+  animation-timing-function: linear;
 }
 
 @media screen and (max-width: 767px) {
@@ -711,6 +740,10 @@ main {
   #slide-2:has(+ .active) {
     transform: translate3d(31%, 0px, -300px) scale(0.7);
     z-index: 7;
+  }
+
+  .hero h1 span {
+    transform: translateY(-700%);
   }
 }
 

@@ -1,17 +1,32 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import Typography from "./typography";
 
 const data = {
   title: "Sangestone",
-  subtitle: "Welcome to",
   img: "/hero-sang-2-min.png",
 };
 
+// wrapping title letters in spans for animation
+let textWithSpans = "";
+
+for (let letter of data.title) {
+  textWithSpans += `<span style='animation-delay:${Math.random()}s'>${letter}</span>`;
+  // i++;
+}
+
 const Hero = () => {
+  useEffect(() => {
+    const heroText = document.querySelector(".hero h1");
+    setTimeout(() => {
+      heroText?.classList.add("animated");
+    }, 200);
+  }, []);
+
   const handleScrollClick = () => {
     const id = "music";
     const targetElement = document.getElementById(id);
@@ -27,18 +42,13 @@ const Hero = () => {
   return (
     <div className="hero relative">
       <div
-        className="absolute bottom-0 left-0 right-0 md:inset-0 flex flex-col justify-center mx-auto w-full lg:max-w-4xl xl:max-w-6xl 2xl:max-w-7x"
+        className="absolute bottom-0 left-0 right-0 md:inset-0 flex flex-col justify-center mx-auto w-full lg:max-w-full lg:w-11/12 "
         id="hero-body-ctn"
       >
         <Typography
-          htmlCopy={data.subtitle}
-          variant="p"
-          classes="main-color mb-2 xl:mb-4 2xl:mb-6 max-w-fit"
-        />
-        <Typography
           variant="h1"
-          htmlCopy={data.title}
-          classes="font-bold uppercase tracking-wider max-w-fit"
+          htmlCopy={textWithSpans}
+          classes="font-bold uppercase tracking-wider max-w-fit text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
         />
       </div>
       <Image
