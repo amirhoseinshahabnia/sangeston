@@ -68,6 +68,8 @@ const Song = ({ data, id }: { data: any; id: number }) => {
     listen: listen.order,
   };
 
+  console.log(globalSettings.numberOfCards);
+
   const sliderWreapperRef = useRef<HTMLDivElement>(null);
 
   // @ts-ignore
@@ -110,7 +112,7 @@ const Song = ({ data, id }: { data: any; id: number }) => {
   };
 
   const nextArrowClickHandler = () => {
-    if (activeSlide !== 2) {
+    if (activeSlide !== globalSettings.numberOfCards - 2) {
       setActiveSlide(activeSlide + 1);
       if (sliderWreapperRef.current) {
         sliderWreapperRef.current.style.transform = `translateX(calc(${-(
@@ -153,9 +155,14 @@ const Song = ({ data, id }: { data: any; id: number }) => {
       if (card !== "globalSettings" && card !== "songTitle") {
         components.push(
           <div
-            className={`card rounded-2xl lg:absolute overflow-hidden ${
-              index === 0 ? "active" : ""
-            }`}
+            className={classNames(
+              "card rounded-2xl lg:absolute overflow-hidden",
+              {
+                active: index === 0,
+                "lyrics-wrapper": index === 1,
+                "credit-wrapper": index === 2,
+              }
+            )}
             key={index}
             id={`slide-${index}`}
             style={{
@@ -424,7 +431,7 @@ const Song = ({ data, id }: { data: any; id: number }) => {
           className={classNames(
             "arrow-ctn flex items-center cursor-pointer hover:opacity-80",
             {
-              disabled: activeSlide === 3,
+              disabled: activeSlide === globalSettings.numberOfCards - 2,
             }
           )}
           onClick={nextArrowClickHandler}
