@@ -1,7 +1,6 @@
-"use client";
-
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { useSwipeable } from "react-swipeable";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { BLOCKS } from "@contentful/rich-text-types";
 import classNames from "classnames";
@@ -50,6 +49,11 @@ export type SongProps = {
     youtube?: string;
     appleMusic?: string;
   };
+};
+
+const swipeableConfig = {
+  preventScrollOnSwipe: true,
+  trackMouse: false,
 };
 
 const Song = ({ data, id }: { data: any; id: number }) => {
@@ -106,7 +110,7 @@ const Song = ({ data, id }: { data: any; id: number }) => {
   };
 
   const nextArrowClickHandler = () => {
-    if (activeSlide !== 3) {
+    if (activeSlide !== 2) {
       setActiveSlide(activeSlide + 1);
       if (sliderWreapperRef.current) {
         sliderWreapperRef.current.style.transform = `translateX(calc(${-(
@@ -115,6 +119,12 @@ const Song = ({ data, id }: { data: any; id: number }) => {
       }
     }
   };
+
+  const swipeHandlers = useSwipeable({
+    onSwipedRight: prevArrowClickHandler,
+    onSwipedLeft: nextArrowClickHandler,
+    ...swipeableConfig,
+  });
 
   const renderOption = {
     renderText: (text: string) => {
@@ -141,7 +151,6 @@ const Song = ({ data, id }: { data: any; id: number }) => {
     let index = 0;
     for (let card in sortable) {
       if (card !== "globalSettings" && card !== "songTitle") {
-        let xFactor = index > 2 ? 60 : index > 1 ? 20 : 0;
         components.push(
           <div
             className={`card rounded-2xl lg:absolute overflow-hidden ${
@@ -373,6 +382,7 @@ const Song = ({ data, id }: { data: any; id: number }) => {
     <div
       className="song-ctn flex relative mb-20 mx-auto lg:mb-44 lg:items-center lg:justify-center"
       id={`card-${id}`}
+      {...swipeHandlers}
     >
       <div
         className={classNames(

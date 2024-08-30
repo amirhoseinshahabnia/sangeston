@@ -542,6 +542,10 @@ main {
     transition: transform 0.2s ease-in-out;
   }
 
+  .slider-wrapper .card:last-child {
+    display: none;
+  }
+
   .song-ctn,
   .card {
     height: 600px;

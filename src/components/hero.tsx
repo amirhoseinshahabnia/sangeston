@@ -48,7 +48,7 @@ const Hero = () => {
         <Typography
           variant="h1"
           htmlCopy={textWithSpans}
-          classes="font-bold uppercase tracking-wider max-w-fit text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
+          classes="font-bold uppercase tracking-wider max-w-fit text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl"
         />
       </div>
       <Image
