@@ -61,10 +61,12 @@ const Song = ({
   id,
   setSongPlaying,
   setGlobalWaveSurfer,
+  globalWaveSurfer,
 }: {
   data: any;
   id: number;
   setSongPlaying: Dispatch<SetStateAction<boolean>>;
+  globalWaveSurfer: any;
   setGlobalWaveSurfer: any;
 }) => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -306,6 +308,7 @@ const Song = ({
                         <Waveform
                           audio={music.songPath.url}
                           setGlobalPlay={setSongPlaying}
+                          globalWaveSurfer={globalWaveSurfer}
                           setGlobalWaveSurfer={setGlobalWaveSurfer}
                         />
                       </div>

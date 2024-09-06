@@ -78,11 +78,14 @@ const Songs = ({ songs }: { songs: any }) => {
             data={song}
             id={i}
             setSongPlaying={setSongPlaying}
+            globalWaveSurfer={globalWaveSurfer}
             setGlobalWaveSurfer={setGlobalWaveSurfer}
           />
         ))}
       </div>
-      {songPlaying && <GlobalStop ws={globalWaveSurfer} />}
+      {songPlaying && (
+        <GlobalStop ws={globalWaveSurfer} setSongPlaying={setSongPlaying} />
+      )}
     </>
   );
 };

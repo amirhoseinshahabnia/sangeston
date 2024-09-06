@@ -11,10 +11,12 @@ import classNames from "classnames";
 const Waveform = ({
   audio,
   setGlobalPlay,
+  globalWaveSurfer,
   setGlobalWaveSurfer,
 }: {
   audio: string;
   setGlobalPlay: Dispatch<SetStateAction<boolean>>;
+  globalWaveSurfer: any;
   setGlobalWaveSurfer: any;
 }) => {
   const [loadingPlayer, setLoadingPlayer] = useState(true);
@@ -46,6 +48,12 @@ const Waveform = ({
   };
 
   const handleOnPlay = () => {
+    if (globalWaveSurfer && globalWaveSurfer !== wavesurfer) {
+      globalWaveSurfer.pause();
+      setTimeout(() => {
+        setGlobalPlay(true);
+      }, 0.0000001);
+    }
     setIsPlaying(true);
     setGlobalPlay(true);
     setGlobalWaveSurfer(wavesurfer);

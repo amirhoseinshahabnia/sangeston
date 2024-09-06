@@ -1,8 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStop } from "@fortawesome/free-solid-svg-icons";
-const GlobalStop = ({ ws }: { ws: any }) => {
+import { Dispatch, SetStateAction } from "react";
+const GlobalStop = ({
+  ws,
+  setSongPlaying,
+}: {
+  ws: any;
+  setSongPlaying: Dispatch<SetStateAction<boolean>>;
+}) => {
   const handleClick = () => {
     ws.pause();
+    setSongPlaying(false);
   };
 
   return (
