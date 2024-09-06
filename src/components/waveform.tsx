@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import WavesurferPlayer from "@wavesurfer/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -8,7 +8,15 @@ import {
 import Skeleton from "./skeleton";
 import classNames from "classnames";
 
-const Waveform = ({ audio }: { audio: string }) => {
+const Waveform = ({
+  audio,
+  setGlobalPlay,
+  setGlobalWaveSurfer,
+}: {
+  audio: string;
+  setGlobalPlay: Dispatch<SetStateAction<boolean>>;
+  setGlobalWaveSurfer: any;
+}) => {
   const [loadingPlayer, setLoadingPlayer] = useState(true);
   const [wavesurfer, setWavesurfer] = useState<any>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -35,6 +43,17 @@ const Waveform = ({ audio }: { audio: string }) => {
 
   const onPlayPause = () => {
     wavesurfer && wavesurfer.playPause();
+  };
+
+  const handleOnPlay = () => {
+    setIsPlaying(true);
+    setGlobalPlay(true);
+    setGlobalWaveSurfer(wavesurfer);
+  };
+
+  const handleOnPause = () => {
+    setIsPlaying(false);
+    setGlobalPlay(false);
   };
 
   return (
@@ -65,8 +84,8 @@ const Waveform = ({ audio }: { audio: string }) => {
           url={audio}
           dragToSeek
           onReady={onReady}
-          onPlay={() => setIsPlaying(true)}
-          onPause={() => setIsPlaying(false)}
+          onPlay={handleOnPlay}
+          onPause={handleOnPause}
         />
       </div>
     </div>

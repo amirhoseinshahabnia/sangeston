@@ -2,11 +2,14 @@
 
 import { useRef, useEffect, useState } from "react";
 import Song from "./song";
+import GlobalStop from "./globalStop";
 
 const MIN_SCREEN_WIDTH_FOR_SCROLL = 1024;
 
 const Songs = ({ songs }: { songs: any }) => {
   const [screenWidth, setScreenWidth] = useState(0);
+  const [songPlaying, setSongPlaying] = useState(false);
+  const [globalWaveSurfer, setGlobalWaveSurfer] = useState<any>(null);
   const songsRef = useRef<HTMLDivElement>(null);
   const activeTimeline = useRef<HTMLDivElement>(null);
 
@@ -61,17 +64,26 @@ const Songs = ({ songs }: { songs: any }) => {
   }, [screenWidth]);
 
   return (
-    <div className="songs py-20 lg:py-44" ref={songsRef}>
-      <div className="absolute inset-0 mx-auto w-full lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7x">
-        <div className="timeline">
-          <div className="timeline-active" ref={activeTimeline} />
+    <>
+      <div className="songs py-20 lg:py-44" ref={songsRef}>
+        <div className="absolute inset-0 mx-auto w-full lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7x">
+          <div className="timeline">
+            <div className="timeline-active" ref={activeTimeline} />
+          </div>
         </div>
-      </div>
 
-      {songs.map((song: any, i: number) => (
-        <Song key={i} data={song} id={i} />
-      ))}
-    </div>
+        {songs.map((song: any, i: number) => (
+          <Song
+            key={i}
+            data={song}
+            id={i}
+            setSongPlaying={setSongPlaying}
+            setGlobalWaveSurfer={setGlobalWaveSurfer}
+          />
+        ))}
+      </div>
+      {songPlaying && <GlobalStop ws={globalWaveSurfer} />}
+    </>
   );
 };
 

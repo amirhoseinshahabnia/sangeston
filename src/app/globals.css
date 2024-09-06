@@ -322,11 +322,15 @@ main {
   opacity: 0;
 }
 
+#bio {
+  background: url(/artist-bio-bg.jpg);
+}
+
 #footer {
   overflow: hidden;
-  background-color: #16282c;
+  background-color: #383f49;
   /* min-height: 650px; */
-  background-image: url(/footer-bg.svg);
+  background-image: url(/footer-bg-new.svg);
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;
@@ -443,6 +447,15 @@ main {
   animation: drop 1.6s forwards;
   opacity: 0;
   animation-timing-function: linear;
+}
+
+#global-pause {
+  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.3);
+}
+
+.global-pause-icon {
+  width: 25px;
+  height: 25px;
 }
 
 @media screen and (max-width: 767px) {
@@ -767,6 +780,10 @@ main {
 
   .hero h1 span {
     transform: translateY(-700%);
+  }
+  .global-pause-icon {
+    width: 30px;
+    height: 30px;
   }
 }
 

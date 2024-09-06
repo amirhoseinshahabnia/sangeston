@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 import { useSwipeable } from "react-swipeable";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
@@ -56,7 +56,17 @@ const swipeableConfig = {
   trackMouse: false,
 };
 
-const Song = ({ data, id }: { data: any; id: number }) => {
+const Song = ({
+  data,
+  id,
+  setSongPlaying,
+  setGlobalWaveSurfer,
+}: {
+  data: any;
+  id: number;
+  setSongPlaying: Dispatch<SetStateAction<boolean>>;
+  setGlobalWaveSurfer: any;
+}) => {
   const [activeSlide, setActiveSlide] = useState(0);
   const { songTitle, globalSettings, music, lyrics, credit, listen } = data;
   const sortedComponents = {
@@ -67,8 +77,6 @@ const Song = ({ data, id }: { data: any; id: number }) => {
     credit: credit.order,
     listen: listen.order,
   };
-
-  console.log(globalSettings.numberOfCards);
 
   const sliderWreapperRef = useRef<HTMLDivElement>(null);
 
@@ -295,7 +303,11 @@ const Song = ({ data, id }: { data: any; id: number }) => {
                           <span key={i}>{artist} </span>
                         ))}
                         <p>Cover Art by: {cardData.coverArtBy}</p> */}
-                        <Waveform audio={music.songPath.url} />
+                        <Waveform
+                          audio={music.songPath.url}
+                          setGlobalPlay={setSongPlaying}
+                          setGlobalWaveSurfer={setGlobalWaveSurfer}
+                        />
                       </div>
                     </div>
                   </div>
