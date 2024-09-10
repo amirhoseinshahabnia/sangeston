@@ -8,7 +8,7 @@ import Typography from "./typography";
 
 const data = {
   title: "Sangestone",
-  img: "/hero-sang-2-min.png",
+  img: "/sangestone-crossing-street.jpg",
 };
 
 // wrapping title letters in spans for animation
@@ -56,7 +56,7 @@ const Hero = () => {
         width={1512}
         height={700}
         src={data.img}
-        alt={data.title}
+        alt="Sangestone Crossing Street"
         id="hero-img"
         className="block w-full"
       />

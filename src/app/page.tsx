@@ -8,7 +8,7 @@ import { getAllSongs, getGlobalConfig } from "@/lib/api";
 const artistBio = {
   htmlCopy:
     "Bijan, aka <span class='font-bold'>Sangstone</span>, was born in the summer of 1987 in Tehran, Iran. He grew up in Atisaz, spending most of his time playing soccer. His creativity was cultivated from an early age through different lessons in piano, painting and writing. When he was 13, his family and he migrated to the US. Shortly after, Bijan discovered poetry. Initially, he wrote poems and performed them for his family, who encouraged his new-found passion.",
-  img: "/sang-portrait-min.png",
+  img: "/sangestone-portait-flare.jpg",
 };
 
 export default async function Home() {
@@ -48,7 +48,7 @@ export default async function Home() {
             width={627}
             height={940}
             src={artistBio.img}
-            alt="Sangestone Photo"
+            alt="Sangestone Portrait"
             className="block w-full"
           />
         </div>
