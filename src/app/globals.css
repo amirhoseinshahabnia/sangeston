@@ -30,6 +30,10 @@
   box-sizing: border-box;
 }
 
+main:has(> .hero-loader) {
+  overflow: hidden;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: #000;
