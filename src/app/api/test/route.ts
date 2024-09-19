@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
-  console.log(request.body);
+  // @ts-ignore
+  console.log(request.body.customer);
 
   return NextResponse.json({ msg: "Webhook received!" });
 }
