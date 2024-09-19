@@ -458,6 +458,10 @@ main {
   height: 25px;
 }
 
+canvas {
+  height: 100vh !important;
+}
+
 @media screen and (max-width: 767px) {
   #hero-img {
     height: 100vh;

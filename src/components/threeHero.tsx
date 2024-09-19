@@ -82,13 +82,13 @@ function ThreeHero() {
     refContainer.current &&
       refContainer.current.appendChild(renderer.domElement);
 
-    window.addEventListener("resize", () => {
+    document.addEventListener("resize", () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    window.addEventListener("mousemove", (e) => {
+    document.addEventListener("mousemove", (e) => {
       obj.rotation.x = THREE.MathUtils.lerp(0, e.clientY, 0.001);
       obj.rotation.y = THREE.MathUtils.lerp(0, e.clientX, 0.002);
       obj.rotation.z = THREE.MathUtils.lerp(0, e.clientY, 0.0001);
