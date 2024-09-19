@@ -90,7 +90,7 @@ function ThreeHero() {
       }
     });
 
-    document.addEventListener("mousemove", (e) => {
+    refContainer.current?.addEventListener("mousemove", (e) => {
       if (window.innerWidth > 768 && obj) {
         // obj.rotation.x = THREE.MathUtils.lerp(0, e.clientY, 0.001);
         obj.rotation.y = THREE.MathUtils.lerp(0, e.clientX, 0.002);
