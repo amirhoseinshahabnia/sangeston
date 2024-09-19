@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 function ThreeHero() {
   const [loading, setLoading] = useState(true);
-  const refContainer = useRef(null);
+  const refContainer = useRef<HTMLDivElement>(null);
   useEffect(() => {
     // === THREE.JS CODE START ===
     var scene = new THREE.Scene();
