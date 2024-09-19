@@ -12,7 +12,7 @@ function ThreeHero() {
   const [loading, setLoading] = useState(true);
   const refContainer = useRef<HTMLDivElement>(null);
 
-  const hdr = "/mars.hdr";
+  const hdr = "/urban.hdr";
   const model = "/sang.glb";
 
   const handleScrollClick = () => {
@@ -47,7 +47,7 @@ function ThreeHero() {
       environmentTexture.mapping = THREE.EquirectangularReflectionMapping;
       scene.environment = environmentTexture;
       scene.background = environmentTexture;
-      //   scene.backgroundBlurriness = 0.01;
+      scene.backgroundBlurriness = 0.01;
       scene.environmentIntensity = 1;
       setTimeout(() => {
         setLoading(false);
@@ -92,9 +92,16 @@ function ThreeHero() {
 
     document.addEventListener("mousemove", (e) => {
       if (window.innerWidth > 768 && obj) {
-        obj.rotation.x = THREE.MathUtils.lerp(0, e.clientY, 0.001);
+        // obj.rotation.x = THREE.MathUtils.lerp(0, e.clientY, 0.001);
         obj.rotation.y = THREE.MathUtils.lerp(0, e.clientX, 0.002);
         obj.rotation.z = THREE.MathUtils.lerp(0, e.clientY, 0.0001);
+        camera.lookAt(
+          new THREE.Vector3(
+            THREE.MathUtils.lerp(0, e.clientX, 0.0003),
+            THREE.MathUtils.lerp(0, e.clientY, 0.0001),
+            0
+          )
+        );
       }
     });
 
