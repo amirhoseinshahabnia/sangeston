@@ -30,7 +30,9 @@
   box-sizing: border-box;
 }
 
-main:has(> .hero-loader) {
+body:has(.hero-loader) {
+  max-height: 100vh;
+  max-height: 100dvh;
   overflow: hidden;
 }
 
@@ -464,6 +466,10 @@ main {
 
 canvas {
   height: 100vh !important;
+}
+
+.sang-gif {
+  width: 80px;
 }
 
 @media screen and (max-width: 767px) {

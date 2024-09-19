@@ -51,7 +51,7 @@ function ThreeHero() {
       scene.environmentIntensity = 1;
       setTimeout(() => {
         setLoading(false);
-      }, 1200);
+      }, 1000);
     });
 
     const material = new THREE.MeshPhysicalMaterial();
@@ -114,19 +114,26 @@ function ThreeHero() {
     <>
       {loading && (
         <div className="hero-loader min-h-screen flex justify-center flex-col items-center">
-          <div className="glitch-logo mb-4"></div>
+          {/* <div className="glitch-logo mb-4"></div> */}
+          <img
+            src="/glitch-1.gif"
+            alt="Sangstone Logo"
+            className="mb-4 sang-gif"
+          />
           <p>Loading...</p>
         </div>
       )}
       <div ref={refContainer}></div>
 
-      <div
-        className="scroll-hero main-color absolute bottom-1  flex flex-col items-center hover:opacity-80 cursor-pointer"
-        onClick={handleScrollClick}
-      >
-        <span className="animate-bounce">Enter the world</span>
-        <FontAwesomeIcon icon={faChevronDown} size="3x" fontWeight={100} />
-      </div>
+      {!loading && (
+        <div
+          className="scroll-hero main-color absolute bottom-1  flex flex-col items-center hover:opacity-80 cursor-pointer"
+          onClick={handleScrollClick}
+        >
+          <span className="animate-bounce">Enter the world</span>
+          <FontAwesomeIcon icon={faChevronDown} size="3x" fontWeight={100} />
+        </div>
+      )}
     </>
   );
 }
