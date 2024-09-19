@@ -5,6 +5,8 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
 
 import { useEffect, useRef, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 function ThreeHero() {
   const [loading, setLoading] = useState(true);
@@ -12,6 +14,18 @@ function ThreeHero() {
 
   const hdr = "/mars.hdr";
   const model = "/sang.glb";
+
+  const handleScrollClick = () => {
+    const id = "music";
+    const targetElement = document.getElementById(id);
+    if (targetElement) {
+      const y = targetElement.getBoundingClientRect().top + window.scrollY;
+      window.scroll({
+        top: y,
+        behavior: "smooth",
+      });
+    }
+  };
 
   useEffect(() => {
     // === THREE.JS CODE START ===
@@ -35,7 +49,9 @@ function ThreeHero() {
       scene.background = environmentTexture;
       //   scene.backgroundBlurriness = 0.01;
       scene.environmentIntensity = 1;
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1200);
     });
 
     const material = new THREE.MeshPhysicalMaterial();
@@ -59,7 +75,6 @@ function ThreeHero() {
         (child as THREE.Mesh).material = material;
       });
       obj = gltf.scene;
-      console.log(obj);
       scene.add(gltf.scene);
     });
 
@@ -96,6 +111,13 @@ function ThreeHero() {
           <p>Loading...</p>
         </div>
       )}
+      <div
+        className="scroll-hero main-color absolute bottom-1  flex flex-col items-center hover:opacity-80 cursor-pointer"
+        onClick={handleScrollClick}
+      >
+        <span className="animate-bounce">Enter the world</span>
+        <FontAwesomeIcon icon={faChevronDown} size="3x" fontWeight={100} />
+      </div>
     </>
   );
 }
