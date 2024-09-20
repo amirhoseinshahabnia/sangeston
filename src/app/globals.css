@@ -470,9 +470,9 @@ main {
   height: 25px;
 }
 
-canvas {
+/* canvas {
   height: 100vh !important;
-}
+} */
 
 .sang-gif {
   width: 80px;
