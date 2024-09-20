@@ -104,7 +104,7 @@ function ThreeHero() {
         obj.rotation.z = THREE.MathUtils.lerp(0, e.clientY, 0.0001);
         camera.lookAt(
           new THREE.Vector3(
-            THREE.MathUtils.lerp(0, e.clientX, 0.0003),
+            THREE.MathUtils.lerp(0, e.clientX, 0.0006),
             THREE.MathUtils.lerp(0, e.clientY, 0.0001),
             0
           )
