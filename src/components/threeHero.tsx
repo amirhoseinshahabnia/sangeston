@@ -151,7 +151,15 @@ function ThreeHero() {
           <p>Loading...</p>
         </div>
       )}
-      <div ref={refContainer}></div>
+      <div ref={refContainer} className="relative">
+        <div
+          className="absolute left-0 bottom-0 right-0 h-24 w-full"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0))",
+          }}
+        ></div>
+      </div>
 
       {!loading && (
         <div
