@@ -3,7 +3,7 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
-
+// import { GUI } from "dat.gui";
 import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
@@ -12,7 +12,7 @@ function ThreeHero() {
   const [loading, setLoading] = useState(true);
   const refContainer = useRef<HTMLDivElement>(null);
 
-  const hdr = "/urban.hdr";
+  const hdr = "/graffiti.hdr";
   const model = "/sang.glb";
 
   const handleScrollClick = () => {
@@ -31,7 +31,7 @@ function ThreeHero() {
     // === THREE.JS CODE START ===
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
-      75,
+      80,
       window.innerWidth / window.innerHeight,
       0.1,
       100
@@ -47,11 +47,12 @@ function ThreeHero() {
       environmentTexture.mapping = THREE.EquirectangularReflectionMapping;
       scene.environment = environmentTexture;
       scene.background = environmentTexture;
-      scene.backgroundBlurriness = 0.01;
-      scene.environmentIntensity = 1;
+      scene.backgroundRotation = new THREE.Euler(1, -1.5, 0);
+      // scene.backgroundBlurriness = 0.01;
+      scene.environmentIntensity = 0.7;
       setTimeout(() => {
         setLoading(false);
-      }, 1000);
+      }, 800);
     });
 
     const material = new THREE.MeshPhysicalMaterial();
@@ -65,9 +66,11 @@ function ThreeHero() {
     scene.add(directionallight);
 
     const ambientLight = new THREE.AmbientLight(0xebfeff, Math.PI / 16);
-    ambientLight.visible = true;
+    ambientLight.visible = false;
     scene.add(ambientLight);
 
+    // const gui = new GUI({ autoPlace: false });
+    // gui.domElement.id = "gui";
     let obj: any;
 
     new GLTFLoader().load(model, (gltf) => {
@@ -75,7 +78,11 @@ function ThreeHero() {
         (child as THREE.Mesh).material = material;
       });
       obj = gltf.scene;
-      scene.add(gltf.scene);
+      scene.add(obj);
+      // const modelFolder = gui.addFolder("Model");
+      // modelFolder.add(obj.position, "z", -20, 20, 1);
+      // modelFolder.open();
+      obj.position.set(0, 0, 1);
     });
 
     // use ref as a mount point of the Three.js scene instead of the document.body
@@ -104,6 +111,20 @@ function ThreeHero() {
         );
       }
     });
+
+    // const sceneFolder = gui.addFolder("Scene");
+    // sceneFolder.add(scene.backgroundRotation, "y", -5, 5, 0.5);
+    // sceneFolder.add(scene.backgroundRotation, "x", -5, 5, 0.5);
+    // sceneFolder.add(scene.backgroundRotation, "z", -5, 5, 0.5);
+    // sceneFolder.add(scene.backgroundRotation, "y", 0, Math.PI * 2);
+    // sceneFolder.add(scene.backgroundRotation, "z", 0, Math.PI * 2);
+    // sceneFolder.open();
+
+    // const cameraFolder = gui.addFolder("Camera");
+    // cameraFolder.add(camera, "fov", 0, 150, 5).onChange(() => {
+    //   camera.updateProjectionMatrix();
+    // });
+    // cameraFolder.open();
 
     function animate() {
       requestAnimationFrame(animate);

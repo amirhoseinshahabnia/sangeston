@@ -77,6 +77,12 @@ header .menu {
   }
 }
 
+#gui {
+  position: absolute;
+  bottom: 2px;
+  left: 2px;
+}
+
 #main-logo {
   display: block;
   height: auto;
