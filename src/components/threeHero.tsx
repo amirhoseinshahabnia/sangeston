@@ -99,13 +99,21 @@ function ThreeHero() {
 
     refContainer.current?.addEventListener("mousemove", (e) => {
       if (window.innerWidth > 768 && obj) {
-        obj.rotation.x = THREE.MathUtils.lerp(0, e.clientY / 2, 0.001);
-        obj.rotation.y = THREE.MathUtils.lerp(0, e.clientX / 8, 0.002);
+        obj.rotation.x = THREE.MathUtils.lerp(
+          -0.1,
+          0.1,
+          e.clientY / window.innerHeight
+        );
+        obj.rotation.y = THREE.MathUtils.lerp(
+          -0.4,
+          0.4,
+          e.clientX / window.innerWidth
+        );
         // obj.rotation.z = THREE.MathUtils.lerp(0, e.clientY, 0.0001);
         camera.lookAt(
           new THREE.Vector3(
-            THREE.MathUtils.lerp(0, e.clientX, 0.0004),
-            THREE.MathUtils.lerp(0, e.clientY, 0.0001),
+            THREE.MathUtils.lerp(-0.5, 0.5, e.clientX / window.innerWidth),
+            THREE.MathUtils.lerp(-0.3, 0.3, e.clientY / window.innerHeight),
             0
           )
         );
