@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { draftMode } from "next/headers";
 import Hero from "@/components/hero";
-// import ThreeHero from "@/components/threeHero";
 import Songs from "@/components/songs";
 import Typography from "@/components/typography";
 import { getAllSongs, getGlobalConfig } from "@/lib/api";
@@ -27,8 +26,8 @@ export default async function Home() {
         </h1>
       </section> */}
 
-      <Hero />
-      {/* <ThreeHero /> */}
+      <Hero noAnimation />
+
       <section
         className="bg-no-repeat bg-cover relative"
         id="music"

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect } from "react";
+import classNames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import Typography from "./typography";
@@ -19,14 +19,7 @@ for (let letter of data.title) {
   // i++;
 }
 
-const Hero = () => {
-  useEffect(() => {
-    const heroText = document.querySelector(".hero h1");
-    setTimeout(() => {
-      heroText?.classList.add("animated");
-    }, 200);
-  }, []);
-
+const Hero = ({ noAnimation }: { noAnimation?: boolean }) => {
   const handleScrollClick = () => {
     const id = "music";
     const targetElement = document.getElementById(id);
@@ -48,7 +41,12 @@ const Hero = () => {
         <Typography
           variant="h1"
           htmlCopy={textWithSpans}
-          classes="font-bold uppercase tracking-wider max-w-fit text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl"
+          classes={classNames(
+            "font-bold uppercase tracking-wider max-w-fit text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl",
+            {
+              animated: !noAnimation,
+            }
+          )}
         />
       </div>
       <Image
