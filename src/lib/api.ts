@@ -96,14 +96,14 @@ function extractSongEntries(fetchResponse: any) {
 }
 
 export async function getAllSongs(
-  limit = 15,
+  limit = 30,
   // By default this function will return published content but will provide an option to
   // return draft content for reviewing articles before they are live
   isDraftMode = false
 ) {
   const songs = await fetchGraphQL(
     `query {
-        songCollection(limit: ${limit}, order: sys_publishedAt_DESC, preview: ${
+        songCollection(limit: ${limit}, order: sys_firstPublishedAt_DESC, preview: ${
       isDraftMode ? "true" : "false"
     }) {
           items {
