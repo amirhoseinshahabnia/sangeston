@@ -77,6 +77,13 @@ header .menu {
   }
 }
 
+.hero-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 18;
+  background-color: #000;
+}
+
 #gui {
   position: absolute;
   bottom: 2px;
@@ -377,6 +384,7 @@ main {
 
 #waveform-ctn {
   width: 100%;
+  opacity: 0.3;
 }
 
 #play-btn svg {

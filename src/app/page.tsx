@@ -27,7 +27,7 @@ export default async function Home() {
         </h1>
       </section> */}
 
-      <Hero />
+      <Hero noAnimation />
       {/* <ThreeHero /> */}
       <section
         className="bg-no-repeat bg-cover relative"

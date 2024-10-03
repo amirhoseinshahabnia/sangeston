@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import classNames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,6 +21,7 @@ for (let letter of data.title) {
 }
 
 const Hero = ({ noAnimation }: { noAnimation?: boolean }) => {
+  const [loading, setLoading] = useState(true);
   const handleScrollClick = () => {
     const id = "music";
     const targetElement = document.getElementById(id);
@@ -31,6 +33,26 @@ const Hero = ({ noAnimation }: { noAnimation?: boolean }) => {
       });
     }
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 600);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="hero-loader min-h-screen flex justify-center flex-col items-center">
+        {/* <div className="glitch-logo mb-4"></div> */}
+        <img
+          src="/glitch-1.gif"
+          alt="Sangstone Logo"
+          className="mb-4 sang-gif"
+        />
+        <p>Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="hero relative">

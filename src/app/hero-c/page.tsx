@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { draftMode } from "next/headers";
-import Hero from "@/components/hero";
 import ThreeHero from "@/components/threeHero";
 import Songs from "@/components/songs";
 import Typography from "@/components/typography";

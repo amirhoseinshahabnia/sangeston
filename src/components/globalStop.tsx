@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStop } from "@fortawesome/free-solid-svg-icons";
 import { Dispatch, SetStateAction } from "react";
+import { div } from "three/webgpu";
 const GlobalStop = ({
   ws,
   setSongPlaying,
@@ -14,13 +15,15 @@ const GlobalStop = ({
   };
 
   return (
-    <div
-      className="main-color cursor-pointer fixed z-20 w-10 h-10 left-2 bottom-2 rounded-full flex items-center justify-center lg:w-12 lg:h-12 lg:left-5 lg:bottom-5 hover:opacity-80"
-      style={{ backgroundColor: "#383f49" }}
-      id="global-pause"
-      onClick={handleClick}
-    >
-      <FontAwesomeIcon icon={faStop} className="global-pause-icon" />
+    <div className="mx-auto w-11/12 fixed z-20 left-0 bottom-5 right-0">
+      <div
+        className="cursor-pointer  w-10 h-10 rounded-full flex items-center justify-center lg:w-12 lg:h-12 hover:opacity-80"
+        style={{ color: "#383f49", backgroundColor: "#c4cfe2" }}
+        id="global-pause"
+        onClick={handleClick}
+      >
+        <FontAwesomeIcon icon={faStop} className="global-pause-icon" />
+      </div>
     </div>
   );
 };

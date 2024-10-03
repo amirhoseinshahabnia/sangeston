@@ -87,7 +87,7 @@ const Waveform = ({
           height={screenWidth < 1024 ? 30 : 40}
           width={screenWidth < 1024 ? (screenWidth < 768 ? 110 : 200) : 250}
           cursorColor="#e7ecf3"
-          waveColor="#626871"
+          waveColor="#e7ecf3"
           progressColor="#442728"
           url={audio}
           dragToSeek

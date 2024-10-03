@@ -1,6 +1,7 @@
 import FooterListenLinks from "./footerListenLinks";
 import FooterSocialLinks from "./footerSocialLinks";
 import Typography from "./typography";
+import Newsletter from "./newsletter";
 
 type Props = {
   data: any;
@@ -20,7 +21,7 @@ const Footer = ({ data }: Props) => {
             htmlCopy='Let&apos;s create<br />something<br /><span className="font-bold">great together</span>'
             classes="main-color mb-16 xl:mb-20 2xl:mb-24"
           />
-          <p className="main-color">
+          <p className="main-color lg:text-lg xl:text-xl">
             For collaborations send an email to:{" "}
             <a
               href="mailto:collab@sang.com"
@@ -38,7 +39,9 @@ const Footer = ({ data }: Props) => {
             <h4 className="mb-4">
               Get early access to fresh beats & upcoming release, Subscribe!
             </h4>
-            <div className="sign-form-placeholder mx-auto lg:m-0"></div>
+            <div className="w-full lg:m-0">
+              <Newsletter />
+            </div>
           </div>
           <div className="song-links flex flex-col items-center order-first mb-8 lg:order-1 lg:mb-0 ">
             <h4 className="mb-4">Listen to Sang&apos;s songs here</h4>
