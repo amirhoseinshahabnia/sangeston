@@ -421,7 +421,10 @@ const Song = ({
       <div className="slider-wrapper" ref={sliderWreapperRef}>
         {renderCards()}
       </div>
-      <div className="absolute pb-4 z-50 flex justify-between  mobile-slider-control lg:hidden">
+      <div
+        className="absolute pb-4 flex justify-between  mobile-slider-control lg:hidden"
+        style={{ zIndex: 17 }}
+      >
         <div
           className={classNames(
             "arrow-ctn flex items-center cursor-pointer hover:opacity-80",
