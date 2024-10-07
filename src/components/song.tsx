@@ -82,6 +82,8 @@ const Song = ({
 
   const sliderWreapperRef = useRef<HTMLDivElement>(null);
 
+  console.log(data);
+
   // @ts-ignore
   const sortable: any = Object.entries(sortedComponents)
     .sort(([, a], [, b]) => a - b)
