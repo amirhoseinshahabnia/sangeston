@@ -20,7 +20,13 @@ for (let letter of data.title) {
   // i++;
 }
 
-const Hero = ({ noAnimation }: { noAnimation?: boolean }) => {
+const Hero = ({
+  noAnimation,
+  withLogo,
+}: {
+  noAnimation?: boolean;
+  withLogo?: boolean;
+}) => {
   const [loading, setLoading] = useState(true);
   const handleScrollClick = () => {
     const id = "music";
@@ -58,16 +64,28 @@ const Hero = ({ noAnimation }: { noAnimation?: boolean }) => {
           className="absolute bottom-0 left-0 right-0 md:inset-0 flex flex-col justify-center mx-auto w-full lg:max-w-full lg:w-11/12 "
           id="hero-body-ctn"
         >
-          <Typography
-            variant="h1"
-            htmlCopy={textWithSpans}
-            classes={classNames(
-              "font-bold uppercase tracking-wider max-w-fit text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl",
-              {
-                animated: !noAnimation,
-              }
-            )}
-          />
+          {withLogo ? (
+            <Image
+              priority
+              width={700}
+              height={74}
+              src="/sangestone-txt-logo.png"
+              alt="Sangestone Text Logo"
+              className="block"
+              id="txt-logo"
+            />
+          ) : (
+            <Typography
+              variant="h1"
+              htmlCopy={textWithSpans}
+              classes={classNames(
+                "font-bold uppercase tracking-wider max-w-fit text-4xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl",
+                {
+                  animated: !noAnimation,
+                }
+              )}
+            />
+          )}
         </div>
         <Image
           priority

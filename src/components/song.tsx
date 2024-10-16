@@ -80,9 +80,9 @@ const Song = ({
     listen: listen.order,
   };
 
-  const sliderWreapperRef = useRef<HTMLDivElement>(null);
+  const cardTitles = ["Music", "Lyrics", "Credit", ""];
 
-  console.log(data);
+  const sliderWreapperRef = useRef<HTMLDivElement>(null);
 
   // @ts-ignore
   const sortable: any = Object.entries(sortedComponents)
@@ -444,7 +444,7 @@ const Song = ({
             className="mr-2 arrow-icon"
           />
           <p className="text-sm" style={{ color: "#bcc5d3" }}>
-            Previous
+            {cardTitles[activeSlide - 1]}
           </p>
         </div>
         <div
@@ -457,7 +457,7 @@ const Song = ({
           onClick={nextArrowClickHandler}
         >
           <p className="text-sm" style={{ color: "#bcc5d3" }}>
-            Next
+            {cardTitles[activeSlide + 1]}
           </p>
           <Image
             src="/arrow-next.png"

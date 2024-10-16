@@ -527,6 +527,10 @@ main {
   main {
     margin-top: -100px;
   }
+  .hero #txt-logo {
+    width: 360px;
+    height: 37.8;
+  }
   #hero-img {
     height: 100vh;
     object-fit: cover;
@@ -718,6 +722,9 @@ main {
   .year-ctn p {
     padding-left: 20px;
   }
+  #footer {
+    background-position: 60px top;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -726,6 +733,10 @@ main {
     flex-grow: 2;
     flex-shrink: 1;
     flex-basis: 0;
+  }
+  .hero #txt-logo {
+    width: 450px;
+    height: 47.25px;
   }
   .social {
     flex-grow: 1;
@@ -821,9 +832,10 @@ main {
   }
 }
 
-@media screen and (min-width: 1280px) and (max-width: 1535px) {
-  #footer {
-    background-position: 60px top;
+@media screen and (min-width: 1280px) {
+  .hero #txt-logo {
+    width: 550px;
+    height: 57.6px;
   }
 }
 
@@ -836,6 +848,10 @@ main {
   }
   .year-ctn p {
     padding-left: 30px;
+  }
+  .hero #txt-logo {
+    width: 700px;
+    height: 74px;
   }
 }
 
