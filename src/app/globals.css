@@ -773,7 +773,11 @@ main {
   }
   .card-title {
     bottom: 40px;
-    right: 5px;
+    right: 3px;
+  }
+
+  #slide-2 .card-title {
+    right: -1px;
   }
 
   .slider-wrapper {
