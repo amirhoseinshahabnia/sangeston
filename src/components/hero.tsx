@@ -61,7 +61,7 @@ const Hero = ({
       )}
       <div className="hero relative">
         <div
-          className="absolute bottom-0 left-0 right-0 md:inset-0 flex flex-col justify-center mx-auto w-full lg:max-w-full lg:w-11/12 "
+          className="absolute bottom-0 left-0 right-0 flex md:inset-0 md:hidden flex-col justify-center mx-auto w-full lg:max-w-full lg:w-11/12 "
           id="hero-body-ctn"
         >
           {withLogo ? (
@@ -100,7 +100,9 @@ const Hero = ({
           className="scroll-hero main-color absolute bottom-1 hidden md:flex flex-col items-center hover:opacity-80 cursor-pointer"
           onClick={handleScrollClick}
         >
-          <span className="animate-bounce">Enter the world</span>
+          <span className="animate-bounce">
+            Enter <strong>Sangestone</strong> world
+          </span>
           <FontAwesomeIcon icon={faChevronDown} size="3x" fontWeight={100} />
         </div>
       </div>
