@@ -13,6 +13,12 @@ const Songs = ({ songs }: { songs: any }) => {
   const songsRef = useRef<HTMLDivElement>(null);
   const activeTimeline = useRef<HTMLDivElement>(null);
 
+  const songsSortedByDate = songs.sort(
+    (a: any, b: any) =>
+      new Date(b.globalSettings.releaseDate).getTime() -
+      new Date(a.globalSettings.releaseDate).getTime()
+  );
+
   // handle scroll functionality
   useEffect(() => {
     setScreenWidth(window?.innerWidth);
@@ -72,7 +78,7 @@ const Songs = ({ songs }: { songs: any }) => {
           </div>
         </div>
 
-        {songs.map((song: any, i: number) => (
+        {songsSortedByDate.map((song: any, i: number) => (
           <Song
             key={i}
             data={song}

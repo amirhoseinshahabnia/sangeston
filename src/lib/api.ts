@@ -14,6 +14,7 @@ const SONGS_GRAPHQL_FIELDS = `
         numberOfCards
         order
         year
+        releaseDate
     }
     music {
         cardTitle
