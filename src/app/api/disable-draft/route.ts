@@ -1,7 +1,8 @@
 import { draftMode } from "next/headers";
 
 export async function GET(req: Request) {
-  draftMode().disable();
+  const draft = await draftMode();
+  draft.disable();
 
   console.log("[API]: disabling draft mode");
 

@@ -15,8 +15,8 @@ export async function GET(req: Request) {
     return Response.json({ msg: "Invalid Token" });
   }
 
-  //   enable draft mode;
-  draftMode().enable();
+  const draft = await draftMode();
+  draft.enable();
 
   redirect("/");
 }

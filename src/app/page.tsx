@@ -13,7 +13,7 @@ const artistBio = {
 };
 
 export default async function Home() {
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
 
   // pass draftmode to fetch functions to show NOT published posts as well
   const songs = await getAllSongs(20, isEnabled);

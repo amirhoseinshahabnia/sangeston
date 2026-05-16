@@ -24,7 +24,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const globalConfig = await getGlobalConfig();
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
 
   return (
     <html lang="en">
